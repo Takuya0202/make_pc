@@ -1,0 +1,24 @@
+services:
+  back:
+    build: ./
+    container_name: pc_make_app
+    volumes:
+      - .:/app
+    ports:
+      - 8880:8000
+  
+  db:
+    image: mysql:8.0
+    container_name: pc_make_db
+    volumes:
+      - make_pc_mysql:/var/lib/mysql
+    ports:
+      - 33306:3306
+    environment:
+      - MYSQL_ROOT_PASSEORD=mysqlpass1234
+      - MYSQL_DATABASE=pc_make_mysql
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=mysqlpass1234
+
+volumes:
+  make_pc_mysql:
