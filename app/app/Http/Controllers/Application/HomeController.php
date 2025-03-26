@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
+use App\Models\Part;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,9 @@ class HomeController extends Controller
 {
     public function showHomeView():View
     {
-        return view('app/home');
+        // パーツ情報を全権取得
+        $parts = Part::all();
+
+        return view('app/home',compact('parts'));
     }
 }
