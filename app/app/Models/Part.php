@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Part extends Model
 {
     protected $fillable = [
-        'img',
+        'image',
         'name',
         'detail',
         'price',
         'url',
         'category',
+        'maker',
     ];
 
     public function reviews():HasMany
