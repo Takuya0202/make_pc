@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('parts', function (Blueprint $table) {
-            // makerを追加
-            $table->string('maker',50);
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',50);
+            $table->timestamps();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('parts', function (Blueprint $table) {
-            $table->dropColumn('maker');
-        });
+        Schema::dropIfExists('categories');
     }
 };
