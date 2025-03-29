@@ -15,8 +15,8 @@ class Part extends Model
         'detail',
         'price',
         'url',
-        'category',
-        'maker',
+        'category_id',
+        'maker_id',
     ];
 
     public function reviews():HasMany
@@ -27,5 +27,15 @@ class Part extends Model
     public function pcLists():BelongsToMany
     {
         return $this->belongsToMany(PcList::class)->withPivot('quantity');
+    }
+
+    public function category():BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function maker():BelongsTo
+    {
+        return $this->belongsTo(Maker::class);
     }
 }

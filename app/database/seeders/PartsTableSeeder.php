@@ -18,11 +18,11 @@ class PartsTableSeeder extends Seeder
             // 商品パーツに関するサンプルシーダー(ファクトリなし)
             // 画像はpublicにあるものを参照。実際に追加するときはstorageを参照
             $parts = [
-                // cpuに関する商品3つ
+                // cpuに関する商品3つ カテゴリーidは1
                 [
                     'name' => 'Core i3 14100',
-                    'maker' => 'intel',
-                    'category' => 'cpu',
+                    'maker_id' => '1',
+                    'category_id' => '1',
                     'price' => 20390,
                     'image' => 'images/core_i3_14100.jpg',
                     'url' => 'https://amzn.asia/d/bmMU0RC',
@@ -30,8 +30,8 @@ class PartsTableSeeder extends Seeder
                 ],
                 [
                     'name' => 'Core i7 14700f',
-                    'maker' => 'intel',
-                    'category' => 'cpu',
+                    'maker_id' => '1',
+                    'category_id' => '1',
                     'price' => 54300,
                     'image' => 'images/core_i7_14700f.jpg',
                     'url' => 'https://amzn.asia/d/6YlowDv',
@@ -39,13 +39,14 @@ class PartsTableSeeder extends Seeder
                 ],
                 [
                     'name' => 'Ryzen7 5700X',
-                    'maker' => 'AMD',
-                    'category' => 'cpu',
+                    'maker_id' => '2',
+                    'category_id' => '1',
                     'price' => 30800,
                     'image' => 'images/Ryzen7_5700X.jpg',
                     'url' => 'https://amzn.asia/d/f19qCYn',
                     'detail' => 'AMD Ryzen 7 5700X は、Zen 3 アーキテクチャを採用した 8コア16スレッドのデスクトップ向けプロセッサー です。最大クロックは 4.6GHz に達し、ゲーミングやコンテンツ制作、動画編集などのマルチタスク環境で優れたパフォーマンスを発揮します。TDPは 65W と低めに抑えられており、発熱が少なく省電力な設計が特徴です。AM4プラットフォームに対応しており、B450やX570マザーボードと組み合わせて手頃な価格で高性能なPCを構築可能 です。コストパフォーマンスに優れたバランスの良いCPUとして、幅広い用途に適しています。'
                 ]
+                // gpuに関する商品
             ];
 
             // seederの中身を追加
