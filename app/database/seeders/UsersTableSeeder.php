@@ -14,6 +14,6 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         // userのシーダー作成。アイコン以外はファクトリを使用
-        User::factory()->count(5)->create(['icon' => 'default-icon.png']);
+        User::factory()->count(5)->create(['icon' => 'images/default-icon.png']);
     }
 }

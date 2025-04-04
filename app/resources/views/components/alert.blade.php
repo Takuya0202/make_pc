@@ -7,9 +7,7 @@
                 @break
             @endif
         @endforeach
-        @if ($overThreeErrors())
-            <li>...以下略</li>
-        @endif
+
     </div>
 @endif
 

@@ -24,6 +24,11 @@ class Part extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function averageRatings()
+    {
+        return $this->reviews()->avg('rating');
+    }
+
     public function pcLists():BelongsToMany
     {
         return $this->belongsToMany(PcList::class)->withPivot('quantity');

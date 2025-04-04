@@ -17,6 +17,7 @@ class MakersTableSeeder extends Seeder
             ['name' => 'intel'],
             ['name' => 'AMD'],
             ['name' => 'nvidia'],
+            ['name' => 'Radeon']
         ];
         foreach ($makers as $maker) {
             Maker::create($maker);

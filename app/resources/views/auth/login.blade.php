@@ -4,7 +4,7 @@
     action="{{ route( 'auth.login')}}"
     button="ログイン">
     {{-- バリデーションエラーのコンポーネント --}}
-    <x-auth.alert :$errors/>
+    <x-alert :$errors/>
     <div class="mb-4 flex flex-col sm:flex-row items-center gap-2">
         <label for="email" class="w-36 text-right">メールアドレス</label>
         <input type="email" name="email" value="{{ old('email') }}" class="w-full sm:w-[80%] px-4 py-2 rounded-2xl border border-gray-300 bg-zinc-200">

@@ -5,7 +5,7 @@
     action="{{route('auth.register')}}"
     button="登録">
     {{-- バリデーションエラーのアラートコンポーネント --}}
-    <x-auth.alert :$errors/>
+    <x-alert :$errors/>
     {{-- アイコン表示　プレビューも表示 --}}
         <div class="mb-4 flex justify-center items-center">
             <label for="icon" class="cursor-pointer">
