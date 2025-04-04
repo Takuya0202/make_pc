@@ -12,7 +12,9 @@ class HomeController extends Controller
     public function showHomeView():View
     {
         // パーツ情報を全権取得
-        $parts = Part::all();
+        $parts = Part::with(['reviews'])->get();
+
+
 
         return view('app/home',compact('parts'));
     }

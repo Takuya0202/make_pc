@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\auth;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -16,9 +16,10 @@ class alert extends Component
     public function __construct(
         public ViewErrorBag $errors,
     ){}
+
     public function overThreeErrors():bool
     {
-        return count($this->errors)>3;
+        return count($this->errors) > 2;
     }
 
     /**
@@ -26,6 +27,6 @@ class alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.auth.alert');
+        return view('components.alert');
     }
 }
