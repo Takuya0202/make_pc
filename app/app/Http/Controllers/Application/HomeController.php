@@ -13,9 +13,6 @@ class HomeController extends Controller
     {
         // パーツ情報を全権取得
         $parts = Part::with(['reviews'])->get();
-
-
-
         return view('app/home',compact('parts'));
     }
 }

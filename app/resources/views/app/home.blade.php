@@ -4,11 +4,13 @@
     {{-- パーツについてのコンテナ --}}
         <div class="grid grid-cols-4 gap-4 mx-5">
             @foreach ($parts as $part)
-                <div class="w-full bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 ">
+                <div class="w-full bg-white border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 ">
                     {{-- 画像がpublicなら$part->imageを返し、storageならstorage/part->imageを返すようにする --}}
-                    <img src="{{asset(str_starts_with($part->image,'images') ? $part->image : 'storage/' . $part->image)}}"
-                    alt="" class="w-full h-96 object-contain rounded-2xl">
-                    <h2 class="mt-2 ml-3"><a href="{{route('app.detail' ,['id' => $part->id ])}}" class="text-blue-600 font-bold text-[30px] my-2">{{$part->name}}</a></h2>
+                    <a href="{{route('app.detail' ,['part_id' => $part->id ])}}">
+                        <img src="{{asset(str_starts_with($part->image,'images') ? $part->image : 'storage/' . $part->image)}}"
+                        alt="" class="w-full h-96 object-contain rounded-2xl">
+                    </a>
+                    <h2 class="mt-2 ml-3"><a href="{{route('app.detail' ,['part_id' => $part->id ])}}" class="text-blue-600 font-bold text-[30px] my-2">{{$part->name}}</a></h2>
                     {{-- れびゅy－の評価を星で表す --}}
                     @php
                         $rating = round($part->averageRatings(),1); //小数第一位まで
@@ -31,6 +33,4 @@
                 </div>
             @endforeach
         </div>
-    {{-- footerコンポーネント --}}
-    <x-layouts.footer />
 </x-layouts.app>

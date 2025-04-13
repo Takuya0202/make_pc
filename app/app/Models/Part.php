@@ -31,7 +31,8 @@ class Part extends Model
 
     public function pcLists():BelongsToMany
     {
-        return $this->belongsToMany(PcList::class)->withPivot('quantity');
+        return $this->belongsToMany(PcList::class,'pc_list_part')
+        ->withPivot('quantity')->withTimestamps();
     }
 
     public function category():BelongsTo

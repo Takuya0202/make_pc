@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
+use App\Http\Controllers\Application\PcListController;
 use App\Http\Controllers\Application\ReviewController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -25,8 +26,13 @@ Route::middleware('auth')->prefix('app')->group(function(){
     Route::get('home',[HomeController::class,'showHomeView'])->name('app.home');
     Route::post('/logout',[LogoutController::class,'logout'])->name('auth.logout');
     // パーツ詳細ページ
-    Route::get('/detail/{id}',[DetailController::class,'showDetailView'])->name('app.detail')->whereNumber('id');
+    Route::get('/detail/{part_id}',[DetailController::class,'showDetailView'])->name('app.detail')->whereNumber('part_id');
     //商品レビューページ
-    Route::get('/review/{id}',[ReviewController::class,'showReviewView'])->name('app.review')->whereNumber('id');
-    Route::post('/review/{id}',[ReviewController::class,'review']);
+    Route::get('/review/{part_id}',[ReviewController::class,'showReviewView'])->name('app.review')->whereNumber('part_id');
+    Route::post('/review/{part_id}',[ReviewController::class,'review']);
+    // pcListページ
+    Route::get('/list',[PcListController::class,'showPcListsView'])->name('app.lists');
+    Route::get('/list/{pc_list_id}',[PcListController::class,'showPcListView'])->name('app.list')->whereNumber('pc_list_id');
+    Route::post('list/create',[PcListController::class,'createList'])->name('app.list.create');
+    Route::post('/list/add',[PcListController::class,'addPartToList'])->name('app.list.add');
 });
