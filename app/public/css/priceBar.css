@@ -37,7 +37,7 @@
 .range-bar{
     height: 100%;
     border-radius: 50px;
-    background: blue;
+    background: white;
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
@@ -60,6 +60,7 @@
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
-    background: turquoise;
+    background: black;
     border-radius: 50px;
+
 }

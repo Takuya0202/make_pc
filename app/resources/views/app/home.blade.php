@@ -7,13 +7,13 @@
     <div class="my-3 mx-auto w-[80%] bg-white rounded-xl shadow-2xs border-2 border-[#d1d5db]">
         <form action="{{route('app.home.search')}}" method="get" class="p-4 flex items-center justify-between">
             <div class="flex">
-                <select name="" id="" class="text-[#3e3e3e] p-2 rounded-l-md truncate w-20 bg-[#ddd]">
+                <select name="category" id="" class="text-[#3e3e3e] p-2 rounded-l-md truncate w-20 bg-[#ddd]">
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
                 <input type="text" name="name" placeholder="商品を検索"
-                class="block w-[46%] px-5 py-2 text-[#d1d5db] bg-white border-2 border-[#d1d5db] rounded-r-md">
+                class="px-5 py-2 text-[#d1d5db] bg-white border-2 border-[#d1d5db] rounded-r-md">
             </div>
             {{-- 値段検索tailwind使わない --}}
             <div>
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="button">絞り込み</button>
         </form>
     </div>
     {{-- パーツについてのコンテナ --}}
