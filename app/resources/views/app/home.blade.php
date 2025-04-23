@@ -3,9 +3,25 @@
     <x-layouts.header />
     <link rel="stylesheet" href="{{asset('css/priceBar.css')}}">
     <script src="{{asset('js/priceBar.js')}}"></script>
+    <script src="{{asset('js/searchForm.js')}}"></script>
     {{-- パーツ検索機能 --}}
-    <div class="my-3 mx-3 bg-white rounded-xl shadow-2xs border-2 border-[#d1d5db]">
-        <form action="{{route('app.home.search')}}" method="get" class="p-4 flex items-center" id="searchForm">
+    <div class="mt-3 mb-5 mx-3">
+        <form action="{{route('app.home.search')}}" method="get" class="flex items-center justify-start" id="searchForm">
+            {{-- headerの情報と同期させる --}}
+            <input type="hidden" name="category" value="" id="homeCategory">
+            <input type="hidden" name="name" value="" id="homeName">
+            {{-- ソート機能 --}}
+            <div class="mx-5">
+                <h2 class="ml-[10px] mb-1.5">並び替え</h2>
+                <select name="sort" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl" onchange="this.form.submit()">
+                    <option value="created_desc" @selected(request('sort') == 'created_desc')>新しい順</option>
+                    <option value="created_asc" @selected(request('sort') == 'created_asc')>古い順</option>
+                    <option value="price_desc" @selected(request('sort') == 'price_desc')>価格の高い順</option>
+                    <option value="price_asc" @selected(request('sort') == 'price_asc')>価格の低い順</option>
+                    <option value="review_desc" @selected(request('sort') == 'review_desc')>評価の高い順</option>
+                    <option value="review_asc" @selected(request('sort') == 'review_asc')>評価の低い順</option>
+                </select>
+            </div>
             {{-- 値段検索 tailwind使わない --}}
             <div>
                 <h2 class="rangeText">価格帯を選択</h2>
@@ -27,9 +43,14 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="button">絞り込み</button>
         </form>
     </div>
+    {{-- パーツが一件も取得出来なかった。。。 --}}
+    @if ($parts->isEmpty())
+        <div class="flex items-center justify-center h-[80Vh] tracking-wider text-xl ">
+            <h2>part not found</h2>
+        </div>
+    @endif
     {{-- パーツについてのコンテナ --}}
         <div class="grid grid-cols-4 gap-4 mx-5">
             @foreach ($parts as $part)

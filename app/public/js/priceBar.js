@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded',() => {
     const maxPrice = 300000;
     const step = 5000;
 
+    let timer;
+
     function updateSlider(event) {
         let lowVal = parseInt(lowSlider.value);
         let highVal = parseInt(highSlider.value);
@@ -40,11 +42,25 @@ document.addEventListener('DOMContentLoaded',() => {
         // range-barを更新
         rangeBar.style.left = min + '%';
         rangeBar.style.width = ( max - min ) + '%';
+
+        // clearTimeout(timer);
+        // timer = setTimeout(() => {
+        //     form.submit();
+        // },500);
+    }
+    // レンジバー変更後に自動送信する関数
+    function submit(){
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            form.submit();
+        },400)
     }
 
     // イベント設定
     lowSlider.addEventListener('input', updateSlider);
+    lowSlider.addEventListener('input',submit)
     highSlider.addEventListener('input', updateSlider);
+    highSlider.addEventListener('input',submit);
 
     // 初期設定
     updateSlider();

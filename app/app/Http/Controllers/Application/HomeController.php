@@ -22,13 +22,13 @@ class HomeController extends Controller
 
     public function search(Request $request) : View
     {
-        //商品名検索
-        $name = $request->name;
-        $category = $request->category;
-        $lowPrice = $request->lowPrice ?? 0;
-        $highPrice = $request->highPrice ?? 300000;
+        $name = $request->input('name');
+        $category = $request->input('category');
+        $lowPrice = $request->input('lowPrice', 0);
+        $highPrice = $request->input('highPrice', 300000);
+        $sort = $request->input('sort');
 
-        $query = Part::query();
+        $query = Part::query()->with(['reviews','category']);
 
         // 商品名に対しての検索
         if (!empty($name)){
@@ -40,10 +40,31 @@ class HomeController extends Controller
         }
         // 価格帯検索
         $query->whereBetween('price',[$lowPrice,$highPrice]);
+
+        // 並び替え　新着順
+        if ($sort == 'created_desc') {
+            $query->orderBy('created_at','desc');
+        } //古い順
+        elseif ($sort == 'created_asc') {
+            $query->orderBy('created_at','asc');
+        }
+         //価格の高い順
+        elseif ($sort == 'price_desc') {
+            $query->orderBy('price','desc');
+        } // 価格の安い順
+        elseif ($sort == 'price_asc') {
+            $query->orderBy('price','asc');
+        } // レビューの高い順
+        elseif ($sort == 'review_desc') {
+            $query->withAvg('reviews','rating') // reviews_avg_ratingという名前で収納される
+                ->orderBy('reviews_avg_rating','desc');
+        } //レビューの低い順
+        else{
+            $query->withAvg('reviews','rating') // reviews_avg_ratingという名前で収納される
+            ->orderBy('reviews_avg_rating','asc');
+        }
         // 取得
-        $searchedParts = $query->with(['reviews','category'])
-                        ->orderBy('category_id','asc')
-                        ->get();
+        $searchedParts = $query->get();
         //　カテゴリ
         $categories = Category::all();
 

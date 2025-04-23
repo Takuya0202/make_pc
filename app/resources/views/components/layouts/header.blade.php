@@ -7,7 +7,7 @@
         <div class="flex-1">
             <form action="{{route('app.home.search')}}" method="get">
                 <div class="flex w-full">
-                    <select name="category" class="w-[20%] max-w-24 p-2 text-[#3e3e3e] bg-[#ddd] rounded-l-md">
+                    <select name="category" class="w-[20%] max-w-24 p-2 text-[#3e3e3e] bg-[#ddd] rounded-l-md" id="headerCategory">
                         @foreach ($categories as $category)
                             @if ($loop->first)
                                 <option value="all" @selected(request('category') == 'all')>全て</option>
@@ -15,9 +15,12 @@
                             <option value="{{$category->id}}" @selected( (string) request('category') === (string) $category->id)>{{$category->name}}</option>
                         @endforeach
                     </select>
-                    <input type="text" name="name" placeholder="商品を検索" value="{{request('name') ?? ''}}"
+                    <input type="text" name="name" placeholder="商品を検索" value="{{request('name') ?? ''}}" id="headerName"
                         class="w-full pl-3 text-[#000] bg-white border-2 border-[#d1d5db]">
-                    <button type="submit" class="w-[20%] max-w-24 ml-1 button">検索</button>
+                    <button type="submit" class="w-[20%] max-w-24 ml-1 button" id="headerButton">検索</button>
+                    {{-- homeからの価格設定を取得 --}}
+                    <input type="hidden" name="lowPrice" value="" id="headerLowPrice">
+                    <input type="hidden" name="highPrice" value="" id="headerHighPrice">
                 </div>
             </form>
         </div>
