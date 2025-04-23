@@ -29,6 +29,6 @@ class ReviewController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect()->route('app.detail',['id' => $partId]);
+        return redirect()->route('app.detail',['part_id' => $partId]);
     }
 }
