@@ -4,12 +4,15 @@ document.addEventListener('DOMContentLoaded',() => {
     const lowNum = document.getElementById('low-num');
     const highNum = document.getElementById('high-num');
     const rangeBar = document.getElementById('range-bar');
+    const form = document.getElementById('searchForm');
 
     const minPrice = 0;
     const maxPrice = 300000;
     const step = 5000;
 
-    function updateSlider() {
+    let timer;
+
+    function updateSlider(event) {
         let lowVal = parseInt(lowSlider.value);
         let highVal = parseInt(highSlider.value);
         // low値とhigh値に下限、上限を持たせる low値は0~295000まで high値は5000~300000まで
@@ -39,11 +42,25 @@ document.addEventListener('DOMContentLoaded',() => {
         // range-barを更新
         rangeBar.style.left = min + '%';
         rangeBar.style.width = ( max - min ) + '%';
+
+        // clearTimeout(timer);
+        // timer = setTimeout(() => {
+        //     form.submit();
+        // },500);
+    }
+    // レンジバー変更後に自動送信する関数
+    function submit(){
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            form.submit();
+        },400)
     }
 
     // イベント設定
     lowSlider.addEventListener('input', updateSlider);
+    lowSlider.addEventListener('input',submit)
     highSlider.addEventListener('input', updateSlider);
+    highSlider.addEventListener('input',submit);
 
     // 初期設定
     updateSlider();

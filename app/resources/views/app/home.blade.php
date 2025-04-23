@@ -3,19 +3,26 @@
     <x-layouts.header />
     <link rel="stylesheet" href="{{asset('css/priceBar.css')}}">
     <script src="{{asset('js/priceBar.js')}}"></script>
+    <script src="{{asset('js/searchForm.js')}}"></script>
     {{-- パーツ検索機能 --}}
-    <div class="my-3 mx-auto w-[80%] bg-white rounded-xl shadow-2xs border-2 border-[#d1d5db]">
-        <form action="{{route('app.home.search')}}" method="get" class="p-4 flex items-center justify-between">
-            <div class="flex">
-                <select name="" id="" class="text-[#3e3e3e] p-2 rounded-l-md truncate w-20 bg-[#ddd]">
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
+    <div class="mt-3 mb-5 mx-3">
+        <form action="{{route('app.home.search')}}" method="get" class="flex items-center justify-start" id="searchForm">
+            {{-- headerの情報と同期させる --}}
+            <input type="hidden" name="category" value="" id="homeCategory">
+            <input type="hidden" name="name" value="" id="homeName">
+            {{-- ソート機能 --}}
+            <div class="mx-5">
+                <h2 class="ml-[10px] mb-1.5">並び替え</h2>
+                <select name="sort" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl" onchange="this.form.submit()">
+                    <option value="created_desc" @selected(request('sort') == 'created_desc')>新しい順</option>
+                    <option value="created_asc" @selected(request('sort') == 'created_asc')>古い順</option>
+                    <option value="price_desc" @selected(request('sort') == 'price_desc')>価格の高い順</option>
+                    <option value="price_asc" @selected(request('sort') == 'price_asc')>価格の低い順</option>
+                    <option value="review_desc" @selected(request('sort') == 'review_desc')>評価の高い順</option>
+                    <option value="review_asc" @selected(request('sort') == 'review_asc')>評価の低い順</option>
                 </select>
-                <input type="text" name="name" placeholder="商品を検索"
-                class="block w-[46%] px-5 py-2 text-[#d1d5db] bg-white border-2 border-[#d1d5db] rounded-r-md">
             </div>
-            {{-- 値段検索tailwind使わない --}}
+            {{-- 値段検索 tailwind使わない --}}
             <div>
                 <h2 class="rangeText">価格帯を選択</h2>
                 <div class="container">
@@ -27,8 +34,8 @@
                         {{--価格帯のバー --}}
                         <div class="range-bar" id="range-bar"></div>
                         {{-- 二つのノードを用意 --}}
-                        <input type="range" name="highPrice" id="high" class="high" min="0" max="300000" step="5000" value="300000">
-                        <input type="range" name="lowPrice" id="low" class="low" min="0" max="300000" step="5000" value="0">
+                        <input type="range" name="highPrice" id="high" class="high" min="0" max="300000" step="5000" value="{{request('highPrice') ?? 300000}}">
+                        <input type="range" name="lowPrice" id="low" class="low" min="0" max="300000" step="5000" value="{{request('lowPrice') ?? 0}}">
                     </div>
                     {{-- high値を表示するコンテナ --}}
                     <div class="high-num-container">
@@ -38,6 +45,12 @@
             </div>
         </form>
     </div>
+    {{-- パーツが一件も取得出来なかった。。。 --}}
+    @if ($parts->isEmpty())
+        <div class="flex items-center justify-center h-[80Vh] tracking-wider text-xl ">
+            <h2>part not found</h2>
+        </div>
+    @endif
     {{-- パーツについてのコンテナ --}}
         <div class="grid grid-cols-4 gap-4 mx-5">
             @foreach ($parts as $part)

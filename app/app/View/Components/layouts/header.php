@@ -2,6 +2,7 @@
 
 namespace App\View\Components\layouts;
 
+use App\Models\Category;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +16,13 @@ class header extends Component
 
     // userにユーザー情報を入れる
     public $user;
+    // 検索フォームのカテゴリー取得
+    public $categories;
 
     public function __construct()
     {
         $this->user = Auth::user();
+        $this->categories = Category::all();
     }
 
     /**
