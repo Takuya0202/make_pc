@@ -4,12 +4,13 @@ document.addEventListener('DOMContentLoaded',() => {
     const lowNum = document.getElementById('low-num');
     const highNum = document.getElementById('high-num');
     const rangeBar = document.getElementById('range-bar');
+    const form = document.getElementById('searchForm');
 
     const minPrice = 0;
     const maxPrice = 300000;
     const step = 5000;
 
-    function updateSlider() {
+    function updateSlider(event) {
         let lowVal = parseInt(lowSlider.value);
         let highVal = parseInt(highSlider.value);
         // low値とhigh値に下限、上限を持たせる low値は0~295000まで high値は5000~300000まで

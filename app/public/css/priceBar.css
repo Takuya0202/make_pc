@@ -2,11 +2,15 @@
     display: flex;
     position: relative;
     width: 600px;
-    height: 80px;
+    height: 60px;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
     background: #d1d5db;
+}
+
+.rangeText{
+    margin: 0 0 6px 10px;
 }
 
 .container input[type="number"]{
@@ -37,7 +41,7 @@
 .range-bar{
     height: 100%;
     border-radius: 50px;
-    background: white;
+    background: #3e3e3e;
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
@@ -62,5 +66,5 @@
     height: 16px;
     background: black;
     border-radius: 50px;
-
+    border: 2px #fff solid
 }

@@ -4,18 +4,9 @@
     <link rel="stylesheet" href="{{asset('css/priceBar.css')}}">
     <script src="{{asset('js/priceBar.js')}}"></script>
     {{-- パーツ検索機能 --}}
-    <div class="my-3 mx-auto w-[80%] bg-white rounded-xl shadow-2xs border-2 border-[#d1d5db]">
-        <form action="{{route('app.home.search')}}" method="get" class="p-4 flex items-center justify-between">
-            <div class="flex">
-                <select name="category" id="" class="text-[#3e3e3e] p-2 rounded-l-md truncate w-20 bg-[#ddd]">
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
-                <input type="text" name="name" placeholder="商品を検索"
-                class="px-5 py-2 text-[#d1d5db] bg-white border-2 border-[#d1d5db] rounded-r-md">
-            </div>
-            {{-- 値段検索tailwind使わない --}}
+    <div class="my-3 mx-3 bg-white rounded-xl shadow-2xs border-2 border-[#d1d5db]">
+        <form action="{{route('app.home.search')}}" method="get" class="p-4 flex items-center" id="searchForm">
+            {{-- 値段検索 tailwind使わない --}}
             <div>
                 <h2 class="rangeText">価格帯を選択</h2>
                 <div class="container">
@@ -27,8 +18,8 @@
                         {{--価格帯のバー --}}
                         <div class="range-bar" id="range-bar"></div>
                         {{-- 二つのノードを用意 --}}
-                        <input type="range" name="highPrice" id="high" class="high" min="0" max="300000" step="5000" value="300000">
-                        <input type="range" name="lowPrice" id="low" class="low" min="0" max="300000" step="5000" value="0">
+                        <input type="range" name="highPrice" id="high" class="high" min="0" max="300000" step="5000" value="{{request('highPrice') ?? 300000}}">
+                        <input type="range" name="lowPrice" id="low" class="low" min="0" max="300000" step="5000" value="{{request('lowPrice') ?? 0}}">
                     </div>
                     {{-- high値を表示するコンテナ --}}
                     <div class="high-num-container">
