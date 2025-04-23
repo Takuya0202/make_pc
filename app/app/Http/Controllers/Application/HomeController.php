@@ -13,14 +13,14 @@ class HomeController extends Controller
 {
     public function showHomeView():View
     {
-        // パーツ情報を取得。検索がなければ全権取得
-        $parts = session('searchedParts') ?? Part::with(['reviews',])->get();
+        // パーツ情報を取得。
+        $parts = Part::with(['reviews',])->get();
         // カテゴリーを取得
         $categories = Category::all();
         return view('app.home',compact('parts','categories'));
     }
 
-    public function search(Request $request) : RedirectResponse
+    public function search(Request $request) : View
     {
         //商品名検索
         $name = $request->name;
@@ -28,19 +28,14 @@ class HomeController extends Controller
         $lowPrice = $request->lowPrice ?? 0;
         $highPrice = $request->highPrice ?? 300000;
 
-        // なんも入力がないならhomeにリダイレクトする
-        if (!$request->hasAny(['name','category','lowPrice','highPrice'])) {
-            return redirect()->route('app.home');
-        }
-
         $query = Part::query();
 
         // 商品名に対しての検索
         if (!empty($name)){
             $query->where('name','like','%' . $name . '%');
         }
-        // カテゴリ検索
-        if (!empty($category)){
+        // カテゴリ検索 allを除く
+        if (!empty($category) && !($category == 'all')){
             $query->where('category_id',$category);
         }
         // 価格帯検索
@@ -49,7 +44,9 @@ class HomeController extends Controller
         $searchedParts = $query->with(['reviews','category'])
                         ->orderBy('category_id','asc')
                         ->get();
+        //　カテゴリ
+        $categories = Category::all();
 
-        return redirect()->route('app.home')->with('searchedParts',$searchedParts);
+        return view('app/home',['parts' => $searchedParts,'categories' => $categories]);
     }
 }
