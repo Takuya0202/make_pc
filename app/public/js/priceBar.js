@@ -42,11 +42,6 @@ document.addEventListener('DOMContentLoaded',() => {
         // range-barを更新
         rangeBar.style.left = min + '%';
         rangeBar.style.width = ( max - min ) + '%';
-
-        // clearTimeout(timer);
-        // timer = setTimeout(() => {
-        //     form.submit();
-        // },500);
     }
     // レンジバー変更後に自動送信する関数
     function submit(){

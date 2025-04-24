@@ -93,4 +93,15 @@ class PcListController extends Controller
         return redirect()->route('app.detail',['part_id' => $request->part_id])
         ->with('success', $targetList->name . 'に追加しました');
     }
+
+    public function updateQuantity(Request $request,string $pc_list_id)
+    {
+        $quantity = $request->quantity;
+        $targetList = PcList::with(['parts'])
+                    ->where('id',$pc_list_id)
+                    ->where('user_id',Auth::user()->id)
+                    ->get();
+        // 数量を変更
+        $targetList->parts()->
+    }
 }

@@ -19,15 +19,18 @@
                         <p class="">￥ {{$totalPrice}}</p>
                     </div>
                     <div class="bg-white shadow-2xl py-5 px-2">
-                        <h1 class="text-2xl mb-3 ml-3 ">リスト内の商品</h1>
+                        <h1 class="text-2xl ml-3 border-b-2 border-[#d1d5db] pb-5">リスト内の商品</h1>
                         @foreach ($targetPcList->parts as $part)
-                                <div class="w-full flex items-center justify-between border-y-2 border-[#d1d5db] bg-white px-3 py-5 ">
+                                <div class="w-full flex items-center justify-between border-b-2 border-[#d1d5db] bg-white px-3 py-5 ">
                                     <p class="ml-5 border-r-2 border-[#d1d5db] pr-3"><img src="{{asset(str_starts_with($part->image,'images') ? $part->image : 'storage/' . $part->image)}}" alt="リストに追加された商品画像"
                                         class="w-32 h-32 rounded-xl "></p>
                                     <p class="font-bold ">{{$part->name}}</p>
                                     <div class="block space-y-5 font-bold">
                                         <p>{{$part->price}} 円</p>
-                                        <p>{{$part->pivot->quantity}}</p>
+                                        <form action="" method="get">
+                                            <input type="number" name="quantity" value="{{$part->pivot->quantity}}"
+                                            onchange="this.form.submit()">
+                                        </form>
                                     </div>
                                 </div>
                         @endforeach
