@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded',() => {
     const headerButton = document.getElementById('headerButton');
-    const homeButton = document.getElementById('submitButton');
+    const form = document.getElementById('searchForm');
+    const sort = document.getElementById('sort');
     // haederから検索されるとき　highとlowを受ける
     function headerSearch ()
     {
@@ -22,6 +23,12 @@ document.addEventListener('DOMContentLoaded',() => {
         category.value = categoryVal;
         name.value = nameVal;
     }
+    // headerからクリックまたは並び替えされた時
     headerButton.addEventListener('click',headerSearch);
-    homeButton.addEventListener('click',homeSearch);
+    sort.addEventListener('change',() =>{
+        homeSearch();
+        form.submit();
+    });
+    // priceBar.jsから呼び出せるようにする
+    window.homeSearch = homeSearch;
 })

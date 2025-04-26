@@ -94,14 +94,28 @@ class PcListController extends Controller
         ->with('success', $targetList->name . 'に追加しました');
     }
 
-    public function updateQuantity(Request $request,string $pc_list_id)
+    public function updateQuantity(Request $request) :RedirectResponse
     {
+        // pclistのページから数量を変更できるようにする
+        $part_id = $request->part_id;
+        $pc_list_id = $request->pc_list_id;
         $quantity = $request->quantity;
+
+        // 対象のリストを取得
         $targetList = PcList::with(['parts'])
                     ->where('id',$pc_list_id)
                     ->where('user_id',Auth::user()->id)
-                    ->get();
-        // 数量を変更
-        $targetList->parts()->
+                    ->firstOrFail();
+
+        // 数量を変更　0以下になった場合はディタッチ
+        if ($quantity >= 1) {
+            $targetList->parts()->updateExistingPivot($part_id,[
+                'quantity' => $quantity
+            ]);
+        }
+        else{
+            $targetList->parts()->detach($part_id);
+        }
+        return redirect()->route('app.list',['pc_list_id' => $pc_list_id]);
     }
 }

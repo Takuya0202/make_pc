@@ -47,15 +47,19 @@ document.addEventListener('DOMContentLoaded',() => {
     function submit(){
         clearTimeout(timer);
         timer = setTimeout(() => {
+            // header情報をセット
+            if (window.homeSearch) {
+                window.homeSearch();
+            }
             form.submit();
         },400)
     }
 
     // イベント設定
-    lowSlider.addEventListener('input', updateSlider);
-    lowSlider.addEventListener('input',submit)
-    highSlider.addEventListener('input', updateSlider);
-    highSlider.addEventListener('input',submit);
+    [lowSlider,highSlider].forEach(slider => {
+        slider.addEventListener('input',updateSlider);
+        slider.addEventListener('input',submit);
+    })
 
     // 初期設定
     updateSlider();

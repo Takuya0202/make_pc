@@ -1,4 +1,6 @@
 <x-layouts.app title="myリスト">
+    <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
+    <script src="{{asset('js/spinNumber.js')}}"></script>
     <x-layouts.header />
         <div class="mt-10 mx-auto flex items-center justify-center w-[84%]">
             {{-- pclistの選択画面 --}}
@@ -27,9 +29,17 @@
                                     <p class="font-bold ">{{$part->name}}</p>
                                     <div class="block space-y-5 font-bold">
                                         <p>{{$part->price}} 円</p>
-                                        <form action="" method="get">
-                                            <input type="number" name="quantity" value="{{$part->pivot->quantity}}"
-                                            onchange="this.form.submit()">
+                                        <form action="{{route('app.list.update')}}" method="POST">
+                                            @csrf
+                                            {{-- パーツidとリストidを隠して送信 --}}
+                                            <input type="text" value="{{$part->id}}" name="part_id" class="hidden">
+                                            <input type="text" value="{{$targetPcList->id}}" name="pc_list_id" class="hidden">
+                                            <div class="spinContainer">
+                                                <span class="spinner spinner-down">-</span>
+                                                <input type="number" name="quantity" value="{{$part->pivot->quantity}}"
+                                                class="number" onchange="this.form.submit()">
+                                                <span class="spinner spinner-up">+</span>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
