@@ -44,6 +44,9 @@
         background: #ea580c;
         transform: scale(1.03);
         }
+        .number{
+
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">

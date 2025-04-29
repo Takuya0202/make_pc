@@ -2,8 +2,8 @@
     {{-- headerコンポーネント --}}
     <x-layouts.header />
     <link rel="stylesheet" href="{{asset('css/priceBar.css')}}">
-    <script src="{{asset('js/priceBar.js')}}"></script>
     <script src="{{asset('js/searchForm.js')}}"></script>
+    <script src="{{asset('js/priceBar.js')}}"></script>
     {{-- パーツ検索機能 --}}
     <div class="mt-3 mb-5 mx-3">
         <form action="{{route('app.home.search')}}" method="get" class="flex items-center justify-start" id="searchForm">
@@ -13,7 +13,7 @@
             {{-- ソート機能 --}}
             <div class="mx-5">
                 <h2 class="ml-[10px] mb-1.5">並び替え</h2>
-                <select name="sort" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl" onchange="this.form.submit()">
+                <select name="sort" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl" id="sort">
                     <option value="created_desc" @selected(request('sort') == 'created_desc')>新しい順</option>
                     <option value="created_asc" @selected(request('sort') == 'created_asc')>古い順</option>
                     <option value="price_desc" @selected(request('sort') == 'price_desc')>価格の高い順</option>
