@@ -57,4 +57,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(PcList::class);
     }
+
+    // 管理者チェック
+    public function isAdmin():bool
+    {
+        return $this->is_admin;
+    }
 }

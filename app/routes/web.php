@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PartController;
 use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
 use App\Http\Controllers\Application\PcListController;
@@ -38,4 +39,9 @@ Route::middleware('auth')->prefix('app')->group(function(){
     Route::post('/list/add',[PcListController::class,'addPartToList'])->name('app.list.add');
     Route::put('/list/update',[PcListController::class,'updateQuantity'])->name('app.list.update');
     Route::delete('/list/delete',[PcListController::class,'deletePartFromList'])->name('app.list.delete');
+});
+
+// 管理者ページ
+Route::middleware('auth','admin')->prefix('admin')->group(function(){
+    Route::get('/',[PartController::class,'showPartsView'])->name('admin.home');
 });
