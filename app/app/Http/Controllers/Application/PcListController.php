@@ -118,4 +118,16 @@ class PcListController extends Controller
         }
         return redirect()->route('app.list',['pc_list_id' => $pc_list_id]);
     }
+
+    public function deletePartFromList(Request $request):RedirectResponse
+    {
+        $part_id = $request->part_id;
+        $pc_list_id = $request->pc_list_id;
+        // 削除するリストの取得
+        $targetList = PcList::findOrFail($pc_list_id);
+        // 削除
+        $targetList->parts()->detach($part_id);
+
+        return redirect()->route('app.list',['pc_list_id' => $pc_list_id]);
+    }
 }

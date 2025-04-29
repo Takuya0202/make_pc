@@ -1,5 +1,7 @@
 <x-layouts.app title="詳細">
     <x-layouts.header />
+    <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
+    <script src="{{asset('js/spinNumber.js')}}"></script>
     <div class="my-20 mx-auto w-[80%] flex items-center justify-between">
         <div class="w-[30%]">
             <div class="mb-10">
@@ -39,7 +41,7 @@
             <x-infomation />
             {{-- pclist追加のフォーム --}}
             <div class="my-5">
-                <form action="{{route('app.list.add')}}" method="post">
+                <form action="{{route('app.list.add')}}" method="post" data-submit="false" class="spinForm">
                     @csrf
                     <div class="flex items-center justify-start space-x-5 mb-5">
                         {{-- パーツidは隠して送信 --}}
@@ -54,7 +56,12 @@
                         </div>
                         <div class="w-[40%]">
                             <label class="mb-3">数量</label><br>
-                            <input type="number" name="quantity" id="quantity" value="1" min="1" max="99">
+                            <div class="spinContainer">
+                                <span class="spinner spinner-down">-</span>
+                                <input type="number" name="quantity" value="1" data-reject-zero="true"
+                                class="number" readonly>
+                                <span class="spinner spinner-up">+</span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex justify-end items-center">

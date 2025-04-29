@@ -36,5 +36,6 @@ Route::middleware('auth')->prefix('app')->group(function(){
     Route::get('/list/{pc_list_id}',[PcListController::class,'showPcListView'])->name('app.list')->whereNumber('pc_list_id');
     Route::post('list/create',[PcListController::class,'createList'])->name('app.list.create');
     Route::post('/list/add',[PcListController::class,'addPartToList'])->name('app.list.add');
-    Route::post('/list/update',[PcListController::class,'updateQuantity'])->name('app.list.update');
+    Route::put('/list/update',[PcListController::class,'updateQuantity'])->name('app.list.update');
+    Route::delete('/list/delete',[PcListController::class,'deletePartFromList'])->name('app.list.delete');
 });
