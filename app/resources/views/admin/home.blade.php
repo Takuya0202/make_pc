@@ -1,16 +1,58 @@
-<x-layouts.app title="ダッシュボード">
-    <header>
-        <div class="flex items-center justify-between w-full h-16 border-b-2 border-[#d1d5db]">
-            <h2 class="font-bold text-2xl w-96 ml-5 my-5"><a href="{{route('admin.home')}}">dashbord</a></h2>
-            <div class="my-5 mr-5">
-                <form action="{{route('auth.logout')}}" method="POST">
-                    @csrf
-                    <button type="submit" class="button">ログアウト</button>
-                </form>
+<x-layouts.admin title="管理ダッシュボード">
+    <div class="p-8 space-y-10">
+        {{-- 統計 --}}
+        <div class="grid grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+                <h3 class="text-sm">総パーツ数</h3>
+                <p class="text-3xl font-bold text-orange-500">{{ $totalParts }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+                <h3 class="text-sm">総ユーザー数</h3>
+                <p class="text-3xl font-bold text-orange-500">{{ $totalUsers }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+                <h3 class="text-sm">総レビュー数</h3>
+                <p class="text-3xl font-bold text-orange-500">{{ $totalReviews }}</p>
             </div>
         </div>
-    </header>
-    <main>
-        <p>商品一覧</p>
-    </main>
-</x-layouts.header>
+        {{-- パーツ --}}
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold mb-4">最近追加されたパーツ</h2>
+                <p><a href="{{route('admin.parts')}}" class="button2 mr-5">パーツをすべて見る</a></p>
+            </div>
+            <ul class="space-y-3 my-2">
+                @foreach ($recentParts as $part)
+                    <li class="flex items-center justify-start space-x-8 border-b-2 border-[#d1d5db] pb-2">
+                        <p><img src="{{asset(str_starts_with($part->image,'images') ? $part->image : 'storage/' . $part->image)}}"
+                            class="w-12 h-12 rounded-xl"></p>
+                        <p class="font-bold text-xl text-blue-700"><a href="{{route('admin.part' , ['part_id' => $part->id])}}">{{$part->name}}</a></p>
+                        <p class="text-[#3e3e3e]">({{$part->maker->name}} - {{$part->category->name}})</p>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        {{-- レビュー --}}
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold mb-4">最近のレビュー</h2>
+                <p><a href="" class="button2 mr-5">レビューをすべて見る</a></p>
+            </div>
+            <ul class="space-y-3 my-2">
+                @foreach ($recentReviews as $review)
+                    <li  class="flex items-center justify-start space-x-8 border-b-2 border-[#d1d5db] pb-2">
+                        <p><img src="{{asset(str_starts_with($review->user->icon,'images') ? $review->user->icon : 'storage/' . $review->user->icon)}}"
+                            class="w-12 h-12 rounded-full"></p>
+                        <div class="flex space-x-1">
+                            @for ($i = 1; $i <= $review->rating; $i++)
+                                <span class="text-yellow-400">★</span>
+                            @endfor
+                        </div>
+                        {{-- レビューは最大40文字まで表示する --}}
+                        <p class="text-xl font-semibold ">{{Str::limit($review->body,40)}}</p>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</x-layouts.admin>

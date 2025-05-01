@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashbordController;
 use App\Http\Controllers\Admin\PartController;
 use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
@@ -43,5 +44,8 @@ Route::middleware('auth')->prefix('app')->group(function(){
 
 // 管理者ページ
 Route::middleware('auth','admin')->prefix('admin')->group(function(){
-    Route::get('/',[PartController::class,'showPartsView'])->name('admin.home');
+    Route::get('/',[DashbordController::class,'showDashbordView'])->name('admin.home');
+    Route::get('/parts',[PartController::class,'showPartsView'])->name('admin.parts');
+    Route::get('/parts/{part_id}',[PartController::class,'showPartView'])->name('admin.part')->whereNumber('part_id');
+
 });
