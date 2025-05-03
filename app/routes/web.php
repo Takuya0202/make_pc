@@ -51,8 +51,11 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::get('/parts/{part_id}',[PartController::class,'showPartView'])->name('admin.part')->whereNumber('part_id');
     // パーツ作成
     Route::get('/part/create',[PartController::class,'createPartView'])->name('admin.part.create');
-    Route::post('/part/create',[PartController::class,'createPart']);
+    Route::post('/',[PartController::class,'create'])->name('admin.part.store');
     // パーツ編集
     Route::get('/part/{part_id}/edit',[PartController::class,'editPartView'])->name('admin.part.edit')->whereNumber('part_id');
-    Route::put('/part/{part_id}',[PartController::class,'updatePart'])->name('admin.part.update');
+    Route::put('/{part_id}',[PartController::class,'update'])->name('admin.part.update');
+    // パーツ削除
+    Route::get('/part/{part_id}/delete',[PartController::class,'deletePartView'])->name('admin.part.delete');
+    Route::delete('/{part_id}',[PartController::class,'delete'])->name('admin.part.destroy');
 });

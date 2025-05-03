@@ -12,6 +12,10 @@
                         class="w-12 h-12 rounded-xl"></p>
                     <p class="font-bold text-xl text-blue-700"><a href="{{route('admin.part', ['part_id' => $part->id])}}">{{$part->name}}</a></p>
                     <p class="text-[#3e3e3e]">({{$part->maker->name}} - {{$part->category->name}})</p>
+                    <div class="flex items-center flex-1 justify-end mr-5 space-x-8">
+                        <p><a href="{{route('admin.part.edit' , ['part_id' => $part->id])}}" class="button2">編集</a></p>
+                        <p><a href="{{route('admin.part.delete' , ['part_id' => $part->id])}}" class="button2">削除</a></p>
+                    </div>
                 </li>
             @endforeach
         </ul>

@@ -1,6 +1,6 @@
 <x-layouts.admin title="パーツ追加">
     <script src="{{asset('js/preview.js')}}"></script>
-    <form action="{{route('admin.part.create')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('admin.part.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="p-6 bg-white m-5 shadow-md">
             {{-- アラートコンポーネント --}}

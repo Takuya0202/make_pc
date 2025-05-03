@@ -43,7 +43,7 @@ class PartController extends Controller
     }
 
     // パーツ作成
-    public function createPart(CreateAndUpdatePartRequest $request):RedirectResponse
+    public function create(CreateAndUpdatePartRequest $request):RedirectResponse
     {
         // パーツ作成
         $part = Part::create([
@@ -76,7 +76,7 @@ class PartController extends Controller
     }
 
     // パーツ更新
-    public function updatePart(string $part_id,CreateAndUpdatePartRequest $request):RedirectResponse
+    public function update(string $part_id,CreateAndUpdatePartRequest $request):RedirectResponse
     {
         // 更新するパーツを取得
         $part = Part::findOrFail($part_id);
@@ -92,5 +92,22 @@ class PartController extends Controller
         $part->update($data);
 
         return redirect()->route('admin.part' , ['part_id' => $part_id]);
+    }
+
+    // 削除確認ページ
+    public function deletePartView(string $part_id):View
+    {
+        $part = Part::findOrFail($part_id);
+
+        return view('admin/part/delete',compact('part'));
+    }
+
+    // 削除
+    public function delete(string $part_id):RedirectResponse
+    {
+        $part = Part::findOrfail($part_id);
+        $part->delete();
+
+        return redirect()->route('admin.parts');
     }
 }

@@ -66,7 +66,7 @@
                     <li><a href="{{route('admin.parts')}}">商品管理</a></li>
                     <li><a href="">ユーザー管理</a></li>
                     <li><a href="">レビュー管理</a></li>
-                    <li><a href="">商品追加</a></li>
+                    <li><a href="{{route('admin.part.create')}}">商品追加</a></li>
                 </ul>
             </div>
         </aside>
