@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded',function(){
     // 画像のpathを取得して、imgのsrc属性を変更させる
-    const fileImage = document.getElementById('icon');
+    const fileImage = document.querySelector('.file-input');
     const previewImage = document.getElementById('preview');
 
     fileImage.addEventListener('change',(event)=>{

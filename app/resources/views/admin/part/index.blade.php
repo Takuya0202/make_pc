@@ -1,6 +1,9 @@
 <x-layouts.admin title="パーツ一覧">
     <div class="bg-white p-6 rounded-2xl shadow-md m-5">
-        <h2 class="text-xl font-bold mb-4">最近追加されたパーツ</h2>
+        <div class="flex items-center space-x-10 mb-4 ml-3">
+            <h2 class="text-xl font-bold">全てのパーツ</h2>
+            <p><a href="{{route('admin.part.create')}}" class="button2">パーツを追加</a></p>
+        </div>
         <ul class="space-y-3 my-2">
             @foreach ($parts as $part)
                 <li class="flex items-center justify-start space-x-8 border-b-2 border-[#d1d5db] pb-2">

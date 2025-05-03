@@ -44,8 +44,15 @@ Route::middleware('auth')->prefix('app')->group(function(){
 
 // 管理者ページ
 Route::middleware('auth','admin')->prefix('admin')->group(function(){
+    // ダッシュボード
     Route::get('/',[DashbordController::class,'showDashbordView'])->name('admin.home');
+    // パーツ管理
     Route::get('/parts',[PartController::class,'showPartsView'])->name('admin.parts');
     Route::get('/parts/{part_id}',[PartController::class,'showPartView'])->name('admin.part')->whereNumber('part_id');
-
+    // パーツ作成
+    Route::get('/part/create',[PartController::class,'createPartView'])->name('admin.part.create');
+    Route::post('/part/create',[PartController::class,'createPart']);
+    // パーツ編集
+    Route::get('/part/{part_id}/edit',[PartController::class,'editPartView'])->name('admin.part.edit')->whereNumber('part_id');
+    Route::put('/part/{part_id}',[PartController::class,'updatePart'])->name('admin.part.update');
 });
