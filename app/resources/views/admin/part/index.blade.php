@@ -14,7 +14,7 @@
                     <p class="text-[#3e3e3e]">({{$part->maker->name}} - {{$part->category->name}})</p>
                     <div class="flex items-center flex-1 justify-end mr-5 space-x-8">
                         <p><a href="{{route('admin.part.edit' , ['part_id' => $part->id])}}" class="button2">編集</a></p>
-                        <p><a href="{{route('admin.part.delete' , ['part_id' => $part->id])}}" class="button2">削除</a></p>
+                        <p><a href="{{route('admin.part.delete' , ['part_id' => $part->id])}}" class="button2 bg-red-600 hover:bg-red-700">削除</a></p>
                     </div>
                 </li>
             @endforeach

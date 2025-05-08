@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashbordController;
 use App\Http\Controllers\Admin\PartController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
 use App\Http\Controllers\Application\PcListController;
@@ -51,11 +52,16 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::get('/parts/{part_id}',[PartController::class,'showPartView'])->name('admin.part')->whereNumber('part_id');
     // パーツ作成
     Route::get('/part/create',[PartController::class,'createPartView'])->name('admin.part.create');
-    Route::post('/',[PartController::class,'create'])->name('admin.part.store');
+    Route::post('/part',[PartController::class,'create'])->name('admin.part.store');
     // パーツ編集
     Route::get('/part/{part_id}/edit',[PartController::class,'editPartView'])->name('admin.part.edit')->whereNumber('part_id');
-    Route::put('/{part_id}',[PartController::class,'update'])->name('admin.part.update');
+    Route::put('/part/{part_id}',[PartController::class,'update'])->name('admin.part.update');
     // パーツ削除
     Route::get('/part/{part_id}/delete',[PartController::class,'deletePartView'])->name('admin.part.delete');
-    Route::delete('/{part_id}',[PartController::class,'delete'])->name('admin.part.destroy');
+    Route::delete('/part/{part_id}',[PartController::class,'delete'])->name('admin.part.destroy');
+    // レビュー管理 一覧、パーツごと、ユーザーごと、詳細
+    Route::get('/reviews',[AdminReviewController::class,'showReviewsView'])->name('admin.reviews.index');
+    Route::get('/reviews/{part_id}/part',[AdminReviewController::class,'showPartReviewView'])->name('admin.reviews.part')->whereNumber('part_id');
+    Route::get('/reviews/{user_id}/user',[AdminReviewController::class,'showUserReviewView'])->name('admin.reviews.user')->whereNumber('user_id');
+    Route::get('/reviews/{review_id}/show',[AdminReviewController::class,'showReviewView'])->name('admin.reviews.show')->whereNumber('review_id');
 });
