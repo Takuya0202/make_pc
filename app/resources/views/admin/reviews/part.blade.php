@@ -1,9 +1,11 @@
-<x-layouts.admin title="{{$part->user->name}}のレビュー">
+<x-layouts.admin title="{{$part->name}}のレビュー">
     <div class="bg-white p-6 rounded-2xl shadow-md">
         <div class="flex items-center m-4 space-x-8">
-            <p><img src="{{asset(str_starts_with($review->part->image , 'images') ? $review->part->image : 'storage/' . $review->part->image)}}"
+            <p><img src="{{asset(str_starts_with($part->image , 'images') ? $part->image : 'storage/' . $part->image)}}"
                 class="w-40 h-40 "></p>
-            <h2 class="text-xl font-bold m-4">{{$review->part->name}}のレビュー</h2>
+            <h2 class="text-xl font-bold m-4">{{$part->name}}のレビュー</h2>
+            <h2 class="text-xl font-bold"><span class="mx-2 text-2xl text-orange-500">{{$totalReviews}}</span>件のレビュー</h2>
+            <h2 class="text-xl font-bold">レーティング <span class="mx-2 text-2xl text-orange-500">{{round($part->averageRatings(),1)}}</span></h2>
         </div>
         <ul class="space-y-3 my-2">
             @foreach ($reviews as $review)
@@ -19,11 +21,10 @@
                         @endfor
                     </div>
                     {{-- レビューは最大40文字まで表示する --}}
-                    <p class="text-xl font-semibold ">{{Str::limit($review->body,40)}}</p>
+                    <p class="text-xl font-semibold "><a href="{{route('admin.reviews.show' , ['review_id' => $review->id])}}">{{Str::limit($review->body,40)}}</a></p>
                     {{-- レビューしたパーツのリンク,削除ボタン --}}
-                    <div class="flex flex-1 justify-end items-center mr-5 space-x-8">
-                        <p class="button"><a href="">{{$review->part->name}}のレビューへ</a></p>
-                        <p class="button2 bg-red-600 hover:bg-red-700"><a href="">削除</a></p>
+                    <div class="flex flex-1 justify-end items-center">
+                        <p class="button2 bg-red-600 hover:bg-red-700 mr-10"><a href="{{route('admin.reviews.delete' , ['review_id' => $review->id])}}">削除</a></p>
                     </div>
                 </li>
             @endforeach

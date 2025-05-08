@@ -56,11 +56,10 @@
                             @endfor
                         </div>
                         {{-- レビューは最大40文字まで表示する --}}
-                        <p class="text-xl font-semibold ">{{Str::limit($review->body,40)}}</p>
-                        {{-- レビューしたパーツのリンク,削除ボタン --}}
-                        <div class="flex flex-1 justify-end items-center mr-5 space-x-8">
-                            <p class="button"><a href="">{{$review->part->name}}のレビューへ</a></p>
-                            <p class="button2 bg-red-600 hover:bg-red-700"><a href="">削除</a></p>
+                        <p class="text-xl font-semibold "><a href="{{route('admin.reviews.show' , ['review_id' => $review->id])}}">{{Str::limit($review->body,40)}}</a></p>
+                        {{-- 削除ボタン --}}
+                        <div class="flex flex-1 justify-end items-center">
+                            <p class="button2 bg-red-600 hover:bg-red-700 mr-10"><a href="{{route('admin.reviews.delete' , ['review_id' => $review->id])}}">削除</a></p>
                         </div>
                     </li>
                 @endforeach

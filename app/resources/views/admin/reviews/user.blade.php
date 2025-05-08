@@ -1,6 +1,6 @@
 <x-layouts.admin title="{{$user->name}}さんのレビュー">
     <div class="bg-white p-6 rounded-2xl shadow-md">
-        <div class="flex items-center m-4 space-x-8">
+        <div class="flex items-center m-6 space-x-8">
             <p><img src="{{asset(str_starts_with($user->icon , 'images') ? $user->icon : 'storage/' . $user->icon)}}"
                 class="w-40 h-40 "></p>
             <h2 class="text-xl font-bold">{{$user->name}}さんのレビュー</h2>
@@ -16,11 +16,10 @@
                         @endfor
                     </div>
                     {{-- レビューは最大200文字まで表示する --}}
-                    <p class="text-xl font-semibold w-[40%]"><a href="{{route('admin.reviews.show' , ['review_id' => $review->id])}}">{{$review->body}}</a></p>
+                    <p class="text-xl font-semibold w-[70%]"><a href="{{route('admin.reviews.show' , ['review_id' => $review->id])}}">{{$review->body}}</a></p>
                     {{-- レビューしたパーツのリンク,削除ボタン --}}
-                    <div class="flex flex-1 justify-end items-center mr-5 space-x-8">
-                        <p class="button"><a href="">{{$review->part->name}}のレビューへ</a></p>
-                        <p class="button2 bg-red-600 hover:bg-red-700"><a href="">削除</a></p>
+                    <div class="flex flex-1 justify-end items-center">
+                        <p class="button2 bg-red-600 hover:bg-red-700 mr-10"><a href="">削除</a></p>
                     </div>
                 </li>
             @endforeach

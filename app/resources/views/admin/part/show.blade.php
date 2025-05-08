@@ -34,7 +34,7 @@
         <div class="flex items-center justify-end space-x-8 mb-5">
             <p class="button2 ml-5"><a href="{{route('admin.parts')}}">戻る</a></p>
             <div class="flex flex-1 justify-end items-center space-x-8">
-                <p class="button2"><a href="">このパーツのレビューを確認</a></p>
+                <p class="button2"><a href="{{route('admin.reviews.part' , ['part_id' => $part->id])}}">このパーツのレビューを確認</a></p>
                 <p class="button2"><a href="{{route('admin.part.edit' , ['part_id' => $part->id])}}">パーツを編集</a></p>
                 <p class="button2"><a href="{{route('admin.part.delete' , ['part_id' => $part->id])}}">パーツを削除</a></p>
             </div>

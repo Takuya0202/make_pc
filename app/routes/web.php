@@ -64,4 +64,6 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::get('/reviews/{part_id}/part',[AdminReviewController::class,'showPartReviewView'])->name('admin.reviews.part')->whereNumber('part_id');
     Route::get('/reviews/{user_id}/user',[AdminReviewController::class,'showUserReviewView'])->name('admin.reviews.user')->whereNumber('user_id');
     Route::get('/reviews/{review_id}/show',[AdminReviewController::class,'showReviewView'])->name('admin.reviews.show')->whereNumber('review_id');
+    Route::get('/reviews/{review_id}/delete',[AdminReviewController::class,'showDeleteView'])->name('admin.reviews.delete')->whereNumber('review_id');
+    Route::delete('/reviews/{review_id}',[AdminReviewController::class,'delete'])->name('admin.reviews.destroy');
 });

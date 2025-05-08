@@ -61,6 +61,7 @@
                         alt="" class="w-full h-96 object-contain rounded-2xl">
                     </a>
                     <h2 class="mt-2 ml-3"><a href="{{route('app.detail' ,['part_id' => $part->id ])}}" class="text-blue-600 font-bold text-[30px] my-2">{{$part->name}}</a></h2>
+                    <p class="ml-3 font-bold text-2xl text-[#3e3e3e]">¥ {{$part->price}}</p>
                     {{-- れびゅy－の評価を星で表す --}}
                     @php
                         $rating = round($part->averageRatings(),1); //小数第一位まで
