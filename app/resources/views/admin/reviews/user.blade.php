@@ -1,5 +1,5 @@
 <x-layouts.admin title="{{$user->name}}さんのレビュー">
-    <div class="bg-white p-6 rounded-2xl shadow-md">
+    <div class="bg-white p-6 rounded-2xl shadow-md m-5">
         <div class="flex items-center m-6 space-x-8">
             <p><img src="{{asset(str_starts_with($user->icon , 'images') ? $user->icon : 'storage/' . $user->icon)}}"
                 class="w-40 h-40 "></p>

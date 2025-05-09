@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashbordController;
 use App\Http\Controllers\Admin\PartController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
 use App\Http\Controllers\Application\PcListController;
@@ -66,4 +67,8 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::get('/reviews/{review_id}/show',[AdminReviewController::class,'showReviewView'])->name('admin.reviews.show')->whereNumber('review_id');
     Route::get('/reviews/{review_id}/delete',[AdminReviewController::class,'showDeleteView'])->name('admin.reviews.delete')->whereNumber('review_id');
     Route::delete('/reviews/{review_id}',[AdminReviewController::class,'delete'])->name('admin.reviews.destroy');
+    // ユーザー管理
+    Route::get('/users',[AdminUserController::class,'showUsersView'])->name('admin.users.index');
+    Route::get('/users/{user_id}/show',[AdminUserController::class,'showUserView'])->name('admin.users.show')->whereNumber('user_id');
+
 });

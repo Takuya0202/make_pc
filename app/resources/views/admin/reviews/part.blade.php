@@ -1,5 +1,5 @@
 <x-layouts.admin title="{{$part->name}}のレビュー">
-    <div class="bg-white p-6 rounded-2xl shadow-md">
+    <div class="bg-white p-6 rounded-2xl shadow-md m-5">
         <div class="flex items-center m-4 space-x-8">
             <p><img src="{{asset(str_starts_with($part->image , 'images') ? $part->image : 'storage/' . $part->image)}}"
                 class="w-40 h-40 "></p>
@@ -13,7 +13,7 @@
                     {{-- レビューユーザのアイコン、名前 --}}
                     <p><img src="{{asset(str_starts_with($review->user->icon,'images') ? $review->user->icon : 'storage/' . $review->user->icon)}}"
                         class="w-12 h-12 rounded-full"></p>
-                    <p class="font-bold text-xl text-blue-700"><a href="">{{$review->user->name}} さん</a></p>
+                    <p class="font-bold text-xl text-blue-700"><a href="{{route('admin.reviews.user' , ['user_id' => $review->user->id])}}">{{$review->user->name}} さん</a></p>
                     {{-- レビューひょうか --}}
                     <div class="flex space-x-1">
                         @for ($i = 1; $i <= $review->rating; $i++)

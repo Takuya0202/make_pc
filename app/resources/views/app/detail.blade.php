@@ -1,4 +1,5 @@
 <x-layouts.app title="詳細">
+
     <x-layouts.header />
     <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
     <script src="{{asset('js/spinNumber.js')}}"></script>

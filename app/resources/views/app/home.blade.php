@@ -1,15 +1,24 @@
 <x-layouts.app title="ホーム画面">
+
+    {{-- head情報 --}}
+    <x-slot:head>
+        <link rel="stylesheet" href="{{asset('css/priceBar.css')}}">
+        <script src="{{asset('js/searchForm.js')}}"></script>
+        <script src="{{asset('js/priceBar.js')}}"></script>
+    </x-slot:head>
+
     {{-- headerコンポーネント --}}
-    <x-layouts.header />
-    <link rel="stylesheet" href="{{asset('css/priceBar.css')}}">
-    <script src="{{asset('js/searchForm.js')}}"></script>
-    <script src="{{asset('js/priceBar.js')}}"></script>
+    <x-slot:header>
+        <x-layouts.header />
+    </x-slot:header>
+
     {{-- パーツ検索機能 --}}
     <div class="mt-3 mb-5 mx-3">
         <form action="{{route('app.home.search')}}" method="get" class="flex items-center justify-start" id="searchForm">
             {{-- headerの情報と同期させる --}}
             <input type="hidden" name="category" value="" id="homeCategory">
             <input type="hidden" name="name" value="" id="homeName">
+
             {{-- ソート機能 --}}
             <div class="mx-5">
                 <h2 class="ml-[10px] mb-1.5">並び替え</h2>
@@ -22,6 +31,7 @@
                     <option value="review_asc" @selected(request('sort') == 'review_asc')>評価の低い順</option>
                 </select>
             </div>
+
             {{-- 値段検索 tailwind使わない --}}
             <div>
                 <h2 class="rangeText">価格帯を選択</h2>
@@ -43,14 +53,17 @@
                     </div>
                 </div>
             </div>
+
         </form>
     </div>
+
     {{-- パーツが一件も取得出来なかった。。。 --}}
     @if ($parts->isEmpty())
         <div class="flex items-center justify-center h-[80Vh] tracking-wider text-xl ">
             <h2>part not found</h2>
         </div>
     @endif
+
     {{-- パーツについてのコンテナ --}}
         <div class="grid grid-cols-4 gap-4 mx-5">
             @foreach ($parts as $part)
