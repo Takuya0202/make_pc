@@ -17,12 +17,31 @@ class UserController extends Controller
         return view('admin/users/index',compact('users'));
     }
 
-    // ユーザー詳細の表示
-    public function showUserView(string $user_id):View
+    // ユーザー情報検索
+    public function search(Request $request):View
     {
-        $user = User::with(['reviews'])
-            ->findOrFail($user_id);
+        $name = $request->input('name');
+        $sort = $request->input('sort');
+        $query = User::query();
 
-        return view('admin/users/show',compact('user'));
+        // 名前検索
+        if (!empty($name)) {
+            $query->where('name' , 'like' , '%' . $name . '%');
+        }
+
+        // ソート 新しい順
+        if ($sort == 'created_desc') {
+            $query->orderBy('created_at','desc');
+        } // 古い順
+        elseif ($sort == 'created_asc') {
+            $query->orderBy('created_at' , 'asc');
+        } // 管理者のみを表示
+        elseif ($sort == 'admin') {
+            $query->where('is_admin',true);
+        }
+
+        $users = $query->get();
+
+        return view('admin/users/index',compact('users'));
     }
 }

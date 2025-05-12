@@ -1,18 +1,30 @@
 <x-layouts.app title="myリスト">
-    <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
-    <script src="{{asset('js/spinNumber.js')}}"></script>
-    <x-layouts.header />
+
+    {{-- head情報 --}}
+    <x-slot:head>
+        <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
+        <script src="{{asset('js/spinNumber.js')}}"></script>
+    </x-slot:head>
+
+    {{-- header --}}
+    <x-slot:header>
+        <x-layouts.header />
+    </x-slot:header>
+
+    {{-- main --}}
         <div class="mt-10 mx-auto flex items-center justify-center w-[84%]">
             {{-- pclistの選択画面 --}}
             <div class="flex items-center space-x-5 mx-auto w-full justify-center">
                 @if ($pcLists)
                     @foreach ($pcLists as $pcList)
                         <p><a href="{{ route('app.list',['pc_list_id' => $pcList->id ])}}"
-                            class="px-[30px] py-[10px] bg-black text-white rounded-xl">{{ $pcList->name }}</a></p>
+                            class="button2">{{ $pcList->name }}</a></p>
                     @endforeach
                 @endif
             </div>
         </div>
+
+        {{-- リスト内のパーツ一覧 --}}
         <div class="mt-10 mx-auto flex items-center justify-center w-[84%]">
             <div class="w-full">
                 @if ($targetPcList)

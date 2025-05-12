@@ -1,8 +1,18 @@
 <x-layouts.app title="詳細">
 
-    <x-layouts.header />
-    <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
-    <script src="{{asset('js/spinNumber.js')}}"></script>
+    {{-- head情報 --}}
+    <x-slot:head>
+        <link rel="stylesheet" href="{{asset('css/spinNumber.css')}}">
+        <script src="{{asset('js/spinNumber.js')}}"></script>
+    </x-slot:head>
+
+    {{-- header情報 --}}
+    <x-slot:header>
+        <x-layouts.header />
+    </x-slot:header>
+
+    {{-- main情報 --}}
+    {{-- パーツの詳細情報 --}}
     <div class="my-20 mx-auto w-[80%] flex items-center justify-between">
         <div class="w-[30%]">
             <div class="mb-10">
@@ -72,13 +82,15 @@
             </div>
         </div>
     </div>
+
+    {{-- レビュー --}}
     <div class="w-[80%] my-10 mx-auto">
         <div class="my-10 flex items-center space-x-5 ">
             <p>商品レビュー</p>
             <p>レーティング</p>
             <p class="text-3xl font-bold">{{$rating}}</p>
             <p><a href="{{route('app.review',['part_id' => $part->id])}}"
-                class="w-20 px-[30px] py-[10px] bg-black text-white font-semibold rounded-xl hover:bg-gray-700">レビューする</a></p>
+                class="button2">レビューする</a></p>
         </div>
         <div class="my-5">
             @foreach ($reviews as $review)
@@ -97,4 +109,5 @@
             @endforeach
         </div>
     </div>
+
 </x-layouts.app>

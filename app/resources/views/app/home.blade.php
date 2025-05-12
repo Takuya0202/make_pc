@@ -12,8 +12,9 @@
         <x-layouts.header />
     </x-slot:header>
 
-    {{-- パーツ検索機能 --}}
+    {{-- main情報 --}}
     <div class="mt-3 mb-5 mx-3">
+        {{-- パーツ検索機能 --}}
         <form action="{{route('app.home.search')}}" method="get" class="flex items-center justify-start" id="searchForm">
             {{-- headerの情報と同期させる --}}
             <input type="hidden" name="category" value="" id="homeCategory">
@@ -57,13 +58,6 @@
         </form>
     </div>
 
-    {{-- パーツが一件も取得出来なかった。。。 --}}
-    @if ($parts->isEmpty())
-        <div class="flex items-center justify-center h-[80Vh] tracking-wider text-xl ">
-            <h2>part not found</h2>
-        </div>
-    @endif
-
     {{-- パーツについてのコンテナ --}}
         <div class="grid grid-cols-4 gap-4 mx-5">
             @foreach ($parts as $part)
@@ -97,4 +91,13 @@
                 </div>
             @endforeach
         </div>
+
+    {{-- パーツが一件も取得出来なかった。。。 --}}
+    @if ($parts->isEmpty())
+        <div class="flex items-center justify-center h-[80Vh] tracking-wider text-xl ">
+            <h2>part not found</h2>
+        </div>
+    @endif
+
+
 </x-layouts.app>

@@ -69,6 +69,5 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::delete('/reviews/{review_id}',[AdminReviewController::class,'delete'])->name('admin.reviews.destroy');
     // ユーザー管理
     Route::get('/users',[AdminUserController::class,'showUsersView'])->name('admin.users.index');
-    Route::get('/users/{user_id}/show',[AdminUserController::class,'showUserView'])->name('admin.users.show')->whereNumber('user_id');
-
+    Route::get('/users/search' , [AdminUserController::class,'search'])->name('admin.users.search');
 });
