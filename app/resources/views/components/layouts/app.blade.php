@@ -48,8 +48,10 @@
 
         }
     </style>
+    {{ $head ?? ''}}
 </head>
 <body class="min-h-screen flex flex-col">
+    {{ $header ?? ''}}
     <main class="flex-grow">
         {{ $slot }}
     </main>

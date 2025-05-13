@@ -1,5 +1,11 @@
 <x-layouts.app title="レビュー">
-    <x-layouts.header />
+
+    {{-- header --}}
+    <x-slot:header>
+        <x-layouts.header />
+    </x-slot:header>
+
+    {{-- main --}}
     <div class="flex justify-center items-center mx-auto my-20 max-w-[1000px] w-[60%]">
         <div class="bg-[#f0f0f0] rounded-3xl shadow-2xl w-full">
             <form action="{{route('app.review',['part_id' => $part->id])}}" method="POST"
@@ -27,8 +33,8 @@
                 </div>
                 <div class="flex items-center justify-end mt-3">
                     <p class="mr-5"><a href="{{route('app.detail',['part_id' => $part->id ])}}"
-                        class="px-[30px] py-[10px] rounded-3xl bg-black text-white">戻る</a></p>
-                    <button type="submit" class="px-[30px] py-[10px] rounded-3xl bg-black text-white">レビューを送信</button>
+                        class="button2">戻る</a></p>
+                    <button type="submit" class="button2 bg-yellow-400 hover:bg-yellow-500 ">レビューを送信</button>
                 </div>
             </form>
         </div>

@@ -1,4 +1,6 @@
 <x-layouts.app title="ユーザー登録">
+    {{-- プレビューのスクリプト --}}
+    <script src="{{ asset('js/preview.js') }}"></script>
     {{-- ユーザフォームのコンポーネント --}}
     <x-auth.form
     title="新規登録"
@@ -6,16 +8,14 @@
     button="登録">
     {{-- バリデーションエラーのアラートコンポーネント --}}
     <x-alert :$errors/>
-    {{-- アイコン表示　プレビューも表示 --}}
+    {{-- アイコン表示 --}}
         <div class="mb-4 flex justify-center items-center">
             <label for="icon" class="cursor-pointer">
                 <img src="{{ asset('images/default-icon.png') }}" id="preview"
                 class="w-20 h-20 rounded-full object-cover border-2 border-gray-300">
             </label>
-            <input type="file" name="icon" class="hidden" id="icon">
+            <input type="file" name="icon" class="file-input hidden" id="icon">
         </div>
-        {{-- プレビューのスクリプト --}}
-        <script src="{{ asset('js/preview.js') }}"></script>
         <div class="mb-4 flex flex-col sm:flex-row items-center gap-2">
             <label for="name" class="w-36 text-right">名前</label>
             <input type="text" name="name" value="{{ old('name') }}" class="w-full sm:w-[80%] px-4 py-2 rounded-2xl border border-gray-300 bg-zinc-200">
