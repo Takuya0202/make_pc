@@ -30,9 +30,15 @@ class HomeController extends Controller
 
         $query = Part::query()->with(['reviews','category']);
 
-        // 商品名に対しての検索
-        if (!empty($name)){
-            $query->where('name','like','%' . $name . '%');
+        // キーワード検索
+        if (!empty($name)) {
+            $query->where('name','like','%' . $name . '%')
+                ->orWhereHas('category' , function($query) use($name){
+                    $query->where('name' , $name); //リレージョン先のカテゴリ検索(完全一致)
+                })
+                ->orWhereHas('maker' , function($query) use ($name){
+                    $query->where('name' , $name);
+                });
         }
         // カテゴリ検索 allを除く
         if (!empty($category) && !($category == 'all')){

@@ -1,8 +1,10 @@
 <header class="w-full px-6 py-4 mb-5 border-b-2 border-[#d1d5db]">
     <div class="flex items-center justify-between w-full">
+
         <div class="w-1/6 min-w-[120px]">
             <h1><a href="{{route('app.home')}}" class="text-xl font-bold">Make PC</a></h1>
         </div>
+
         {{-- 検索バー --}}
         <div class="flex-1">
             <form action="{{route('app.home.search')}}" method="get">
@@ -15,7 +17,7 @@
                             <option value="{{$category->id}}" @selected( (string) request('category') === (string) $category->id)>{{$category->name}}</option>
                         @endforeach
                     </select>
-                    <input type="text" name="name" placeholder="商品を検索" value="{{request('name') ?? ''}}" id="headerName"
+                    <input type="text" name="name" placeholder="キーワードを入力" value="{{request('name') ?? ''}}" id="headerName"
                         class="w-full pl-3 text-[#000] bg-white border-2 border-[#d1d5db]">
                     <button type="submit" class="w-[20%] max-w-24 ml-1 button" id="headerButton">検索</button>
                     {{-- homeからの価格設定を取得 --}}
@@ -24,6 +26,8 @@
                 </div>
             </form>
         </div>
+
+        {{-- ナビ --}}
         <nav class="w-1/3 min-w-[240px]">
             <div class="flex items-center justify-end space-x-3">
                 <img src="{{ asset(str_starts_with($user->icon,'images') ? $user->icon : 'storage/' . $user->icon ) }}"
@@ -36,5 +40,6 @@
                 </form>
             </div>
         </nav>
+
     </div>
 </header>

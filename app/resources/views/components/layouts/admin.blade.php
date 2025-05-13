@@ -45,6 +45,7 @@
         transform: scale(1.03);
         }
     </style>
+    {{ $head ?? ''}}
 </head>
 <body class="min-h-screen flex flex-col">
     <header>
@@ -66,6 +67,8 @@
                     <li><a href="{{route('admin.parts')}}">商品管理</a></li>
                     <li><a href="{{route('admin.users.index')}}">ユーザー管理</a></li>
                     <li><a href="{{route('admin.reviews.index')}}">レビュー管理</a></li>
+                    <li><a href="{{route('admin.categories.index')}}">カテゴリー管理</a></li>
+                    <li><a href="{{route('admin.makers.index')}}">メーカー管理</a></li>
                     <li><a href="{{route('admin.part.create')}}">商品追加</a></li>
                 </ul>
             </div>

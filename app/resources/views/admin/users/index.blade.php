@@ -1,22 +1,23 @@
 <x-layouts.admin title="ユーザー一覧">
 
     {{-- ユーザー検索 --}}
-    <form action="{{route('admin.users.search')}}" method="get">
-
-        {{-- 名前検索 --}}
-        <div class="flex items-center space-x-5">
-            <input type="text" name="name" class="p-4" placeholder="名前で検索" value="{{request('name')}}">
-            <button type="submit">検索</button>
-        </div>
+    <form action="{{route('admin.users.search')}}" method="get" class="flex items-center p-3 m-3 space-x-5">
 
         {{-- 並び替え --}}
         <div>
-            <select name="sort"  onchange="this.form.submit()">
+            <select name="sort"  onchange="this.form.submit()" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl">
                 <option value="created_desc" @selected(request('sort') == 'created_desc')>登録が新しい順</option>
                 <option value="created_asc" @selected(request('sort') == 'created_asc')>登録が古い順</option>
                 <option value="admin" @selected(request('sort') == 'admin')>管理者ユーザーを表示</option>
             </select>
         </div>
+
+        {{-- 名前検索 --}}
+        <div class="flex items-center space-x-5">
+            <input type="text" name="name" class="p-4 w-96 border-2 border-[#3e3e3e] rounded-md" placeholder="名前で検索" value="{{request('name')}}">
+            <button type="submit" class="button2">検索</button>
+        </div>
+
     </form>
 
     {{-- ユーザー情報一覧 --}}

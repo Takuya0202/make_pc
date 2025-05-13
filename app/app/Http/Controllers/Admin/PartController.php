@@ -110,4 +110,50 @@ class PartController extends Controller
 
         return redirect()->route('admin.parts');
     }
+
+    // 検索
+    public function search(Request $request):View
+    {
+        $key = $request->input('key');
+        $sort = $request->input('sort');
+        $query = Part::query()->with(['maker' , 'category']);
+
+        // キーワード検索
+        if (!empty($key)) {
+            $query->where('name','like','%' . $key . '%')
+                ->orWhereHas('category' , function($query) use($key){
+                    $query->where('name' , $key); //リレージョン先のカテゴリ検索(完全一致)
+                })
+                ->orWhereHas('maker' , function($query) use ($key){
+                    $query->where('name' , $key);
+                });
+        }
+
+        // 並び替え　新着順
+        if ($sort == 'created_desc') {
+            $query->orderBy('created_at','desc');
+        } //古い順
+        elseif ($sort == 'created_asc') {
+            $query->orderBy('created_at','asc');
+        }
+         //価格の高い順
+        elseif ($sort == 'price_desc') {
+            $query->orderBy('price','desc');
+        } // 価格の安い順
+        elseif ($sort == 'price_asc') {
+            $query->orderBy('price','asc');
+        } // レビューの高い順
+        elseif ($sort == 'review_desc') {
+            $query->withAvg('reviews','rating') // reviews_avg_ratingという名前で収納される
+                ->orderBy('reviews_avg_rating','desc');
+        } //レビューの低い順
+        else{
+            $query->withAvg('reviews','rating') // reviews_avg_ratingという名前で収納される
+            ->orderBy('reviews_avg_rating','asc');
+        }
+
+        $parts = $query->get();
+
+        return view('admin/part/index' , compact('parts'));
+    }
 }

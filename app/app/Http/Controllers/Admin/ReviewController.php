@@ -89,4 +89,27 @@ class ReviewController extends Controller
 
         return redirect()->route('admin.reviews.index');
     }
+
+    // レビューの検索
+    public function search(Request $request):View
+    {
+        $sort = $request->input('sort');
+        $query = Review::query();
+
+        // ソート、新しい順
+        if ($sort == 'created_desc') {
+            $query->orderBy('created_at' , 'desc');
+        } // レビューの高い順
+        elseif ($sort == 'rating_desc') {
+            $query->orderBy('rating' , 'desc');
+        } // レビューの低い順
+        else{
+            $query->orderBy('rating' , 'asc');
+        }
+
+        // 取得
+        $reviews = $query->get();
+
+        return view('admin/reviews/index',compact('reviews'));
+    }
 }

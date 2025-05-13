@@ -14,6 +14,7 @@
 
     {{-- main情報 --}}
     <div class="mt-3 mb-5 mx-3">
+
         {{-- パーツ検索機能 --}}
         <form action="{{route('app.home.search')}}" method="get" class="flex items-center justify-start" id="searchForm">
             {{-- headerの情報と同期させる --}}

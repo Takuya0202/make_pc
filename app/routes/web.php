@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DashbordController;
 use App\Http\Controllers\Admin\PartController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\MakerController as AdminMakerController;
 use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
 use App\Http\Controllers\Application\PcListController;
@@ -50,6 +52,7 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::get('/',[DashbordController::class,'showDashbordView'])->name('admin.home');
     // パーツ管理
     Route::get('/parts',[PartController::class,'showPartsView'])->name('admin.parts');
+    Route::get('/parts/search',[PartController::class,'search'])->name('admin.part.search');
     Route::get('/parts/{part_id}',[PartController::class,'showPartView'])->name('admin.part')->whereNumber('part_id');
     // パーツ作成
     Route::get('/part/create',[PartController::class,'createPartView'])->name('admin.part.create');
@@ -62,6 +65,7 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     Route::delete('/part/{part_id}',[PartController::class,'delete'])->name('admin.part.destroy');
     // レビュー管理 一覧、パーツごと、ユーザーごと、詳細
     Route::get('/reviews',[AdminReviewController::class,'showReviewsView'])->name('admin.reviews.index');
+    Route::get('/reivews/search',[AdminReviewController::class,'search'])->name('admin.reviews.search');
     Route::get('/reviews/{part_id}/part',[AdminReviewController::class,'showPartReviewView'])->name('admin.reviews.part')->whereNumber('part_id');
     Route::get('/reviews/{user_id}/user',[AdminReviewController::class,'showUserReviewView'])->name('admin.reviews.user')->whereNumber('user_id');
     Route::get('/reviews/{review_id}/show',[AdminReviewController::class,'showReviewView'])->name('admin.reviews.show')->whereNumber('review_id');
@@ -70,4 +74,16 @@ Route::middleware('auth','admin')->prefix('admin')->group(function(){
     // ユーザー管理
     Route::get('/users',[AdminUserController::class,'showUsersView'])->name('admin.users.index');
     Route::get('/users/search' , [AdminUserController::class,'search'])->name('admin.users.search');
+    // カテゴリー
+    Route::get('/categories',[AdminCategoryController::class,'showCategoriesView'])->name('admin.categories.index');
+    Route::get('/categories/create',[AdminCategoryController::class,'showCreateView'])->name('admin.categories.create');
+    Route::post('/categories/store',[AdminCategoryController::class,'create'])->name('admin.categories.store');
+    Route::get('/categories/{category_id}/delete',[AdminCategoryController::class,'deleteCategoryView'])->name('admin.categories.delete')->whereNumber('category_id');
+    Route::delete('/categories/{category_id}',[AdminCategoryController::class,'delete'])->name('admin.categories.destroy');
+    // メーカー
+    Route::get('/makers',[AdminMakerController::class,'showMakersView'])->name('admin.makers.index');
+    Route::get('/makers/create',[AdminMakerController::class,'showCreateView'])->name('admin.makers.create');
+    Route::post('/makers/store',[AdminMakerController::class,'create'])->name('admin.makers.store');
+    Route::get('/makers/{maker_id}/delete',[AdminMakerController::class,'deleteMakerView'])->name('admin.makers.delete')->whereNumber('maker_id');
+    Route::delete('/makers/{maker_id}',[AdminMakerController::class,'delete'])->name('admin.makers.destroy');
 });

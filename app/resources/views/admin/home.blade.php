@@ -1,5 +1,6 @@
 <x-layouts.admin title="管理ダッシュボード">
     <div class="p-8 space-y-10">
+
         {{-- 統計 --}}
         <div class="grid grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-2xl shadow-md">
@@ -15,6 +16,7 @@
                 <p class="text-3xl font-bold text-orange-500">{{ $totalReviews }}</p>
             </div>
         </div>
+
         {{-- パーツ --}}
         <div class="bg-white p-6 rounded-2xl shadow-md">
             <div class="flex items-center justify-between">
@@ -27,6 +29,7 @@
                         <p><img src="{{asset(str_starts_with($part->image,'images') ? $part->image : 'storage/' . $part->image)}}"
                             class="w-12 h-12 rounded-xl"></p>
                         <p class="font-bold text-xl text-blue-700"><a href="{{route('admin.part' , ['part_id' => $part->id])}}">{{$part->name}}</a></p>
+                        <p class="font-bold text-xl">¥ {{$part->price}}</p>
                         <p class="text-[#3e3e3e]">({{$part->maker->name}} - {{$part->category->name}})</p>
                         <div class="flex items-center flex-1 justify-end mr-5 space-x-8">
                             <p><a href="{{route('admin.part.edit' , ['part_id' => $part->id])}}" class="button2">編集</a></p>
@@ -36,6 +39,7 @@
                 @endforeach
             </ul>
         </div>
+
         {{-- レビュー --}}
         <div class="bg-white p-6 rounded-2xl shadow-md">
             <div class="flex items-center justify-between">
@@ -65,5 +69,6 @@
                 @endforeach
             </ul>
         </div>
+
     </div>
 </x-layouts.admin>

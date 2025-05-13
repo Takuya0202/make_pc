@@ -1,6 +1,22 @@
 <x-layouts.admin title="全てのレビュー">
+
     <div class="bg-white p-6 rounded-2xl shadow-md m-5">
-        <h2 class="text-xl font-bold m-4">全てのレビュー</h2>
+
+        {{-- レビュー検索 --}}
+        <div class="flex items-center space-x-5 m-4">
+            <h2 class="text-xl font-bold ">全てのレビュー</h2>
+
+            {{-- ソート --}}
+            <form action="{{route('admin.reviews.search')}}" method="get">
+                <select name="sort" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl" onchange="this.form.submit()">
+                    <option value="created_desc" @selected(request('sort') == 'created_desc')>新しい順</option>
+                    <option value="rating_desc" @selected(request('sort') == 'rating_desc')>評価の高い順</option>
+                    <option value="rating_asc" @selected(request('sort') == 'rating_desc')>評価の低い順</option>
+                </select>
+            </form>
+        </div>
+
+        {{-- レビュー一覧 --}}
         <ul class="space-y-3 my-2">
             @foreach ($reviews as $review)
                 <li  class="flex flex-wrap items-center justify-start space-x-8 border-b-2 border-[#d1d5db] pb-2">
@@ -23,5 +39,6 @@
                 </li>
             @endforeach
         </ul>
+
     </div>
 </x-layouts.admin>

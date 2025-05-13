@@ -1,5 +1,30 @@
 <x-layouts.admin title="パーツ追加">
-    <script src="{{asset('js/preview.js')}}"></script>
+
+    {{-- head追加 --}}
+    <x-slot:head>
+        <script src="{{asset('js/preview.js')}}"></script>
+        <script>
+            // これはbladeないじゃないとname()を参照してくれないので別ファイルは不可能
+            document.addEventListener('DOMContentLoaded',() => {
+                // カテゴリー欄で追加を選択されたときにリンクへとばす
+                const categorySelect = document.getElementById('categorySelect');
+                categorySelect.addEventListener('change',(event) => {
+                    if (event.target.value == 'add-category') {
+                        window.location.href = "{{route('admin.categories.create')}}";
+                    }
+                })
+
+                // メーカー追加を選択されたときにリンクへとばす
+                const makerSelect = document.getElementById('makerSelect');
+                makerSelect.addEventListener('change',(event) => {
+                    if (event.target.value == 'add-maker') {
+                        window.location.href = "{{route('admin.makers.create')}}";
+                    }
+                })
+            })
+        </script>
+    </x-slot:head>
+
     <form action="{{route('admin.part.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="p-6 bg-white m-5 shadow-md">
@@ -35,18 +60,20 @@
             </div>
             <div class="flex items-center space-x-8 mb-5">
                 <label class="text-xl font-semibold">メーカー</label>
-                <select name="maker_id" class="p-2 border-2 border-black">
+                <select name="maker_id" class="p-2 border-2 border-black" id="makerSelect">
                     @foreach ($makers as $maker)
                         <option value="{{$maker->id}}" @selected(old('maker_id') == $maker->id)>{{$maker->name}}</option>
                     @endforeach
+                    <option value="add-maker">メーカーを追加</option>
                 </select>
             </div>
             <div class="flex items-center space-x-8 mb-5">
                 <label class="text-xl font-semibold">カテゴリー</label>
-                <select name="category_id" class="border-2 border-black p-2">
+                <select name="category_id" class="border-2 border-black p-2" id="categorySelect">
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}" @selected(old('category_id') == $category->id)>{{$category->name}}</option>
                     @endforeach
+                    <option value="add-category">カテゴリーを追加</option>
                 </select>
             </div>
             {{-- 戻る,変更ボタン --}}
