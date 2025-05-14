@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Part extends Model
 {
     protected $fillable = [
-        'img',
+        'image',
         'name',
         'detail',
         'price',
         'url',
-        'category',
+        'category_id',
+        'maker_id',
     ];
 
     public function reviews():HasMany
@@ -23,8 +24,24 @@ class Part extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function averageRatings()
+    {
+        return $this->reviews()->avg('rating');
+    }
+
     public function pcLists():BelongsToMany
     {
-        return $this->belongsToMany(PcList::class)->withPivot('quantity');
+        return $this->belongsToMany(PcList::class,'pc_list_part')
+        ->withPivot('quantity')->withTimestamps();
+    }
+
+    public function category():BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function maker():BelongsTo
+    {
+        return $this->belongsTo(Maker::class);
     }
 }

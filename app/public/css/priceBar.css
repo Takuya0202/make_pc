@@ -1,0 +1,71 @@
+.container{
+    display: flex;
+    position: relative;
+    width: 600px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #d1d5db;
+    padding: 0 4px;
+}
+
+.rangeText{
+    margin: 0 0 6px 10px;
+}
+
+.container input[type="number"]{
+    width: 80px;
+    height: 30px;
+    background: #fff;
+    border: 1px #eee solid;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 8px;
+}
+/* ブラウザにデフォルトでついてるnumberのスピンボタンを削除 */
+.container input[type="number"]::-webkit-outer-spin-button,
+.container input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+.slider-container{
+    position: relative;
+    width: 400px;
+    height: 6px;
+    background: #eee;
+    outline: none;
+    margin: 10px;
+}
+
+.range-bar{
+    height: 100%;
+    border-radius: 50px;
+    background: #3e3e3e;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    width: 100%;
+}
+
+.slider-container input[type="range"]{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    -webkit-appearance: none;
+    outline: none;
+    background: none;
+    width: 100%;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb{
+    pointer-events: all;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: black;
+    border-radius: 50px;
+    border: 2px #fff solid
+}

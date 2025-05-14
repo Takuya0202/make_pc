@@ -1,0 +1,47 @@
+.spinContainer{
+    position: relative;
+    width: 160px;
+    height: 40px;
+    border-radius: 50px;
+    border: 1px #3e3e3e solid;
+    display: block;
+    padding: 5px;
+}
+
+.spinContainer input[type="number"]{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: white;
+    border:none;
+    font-size: 20px;
+}
+
+.spinContainer input[type="number"]::-webkit-outer-spin-button,
+.spinContainer input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.spinContainer .spinner{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    font-size: 20px;
+    background-color: #dadee4;
+    border-radius: 9999px;
+    line-height: 24px;
+}
+
+.spinner-up{
+    right: 12px;
+}
+
+.spinner-down{
+    left: 10px;
+}

@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PcList extends Model
 {
+    protected $table = 'pc_lists';
+
     protected $fillable = [
+        'user_id',
         'name',
         'price',
     ];
@@ -20,6 +23,8 @@ class PcList extends Model
 
     public function parts():BelongsToMany
     {
-        return $this->belongsToMany(Part::class);
+        return $this->belongsToMany(Part::class,'pc_list_part')
+        ->withPivot('quantity')
+        ->withTimestamps();
     }
 }
