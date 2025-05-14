@@ -10,6 +10,7 @@ use App\Http\Controllers\application\DetailController;
 use App\Http\Controllers\Application\HomeController;
 use App\Http\Controllers\Application\PcListController;
 use App\Http\Controllers\Application\ReviewController;
+use App\Http\Controllers\Application\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -44,6 +45,9 @@ Route::middleware('auth')->prefix('app')->group(function(){
     Route::post('/list/add',[PcListController::class,'addPartToList'])->name('app.list.add');
     Route::put('/list/update',[PcListController::class,'updateQuantity'])->name('app.list.update');
     Route::delete('/list/delete',[PcListController::class,'deletePartFromList'])->name('app.list.delete');
+    // userページ
+    Route::get('/user',[UserController::class,'showUserView'])->name('app.user.show');
+    Route::put('/user/{user_id}',[UserController::class,'update'])->name('app.user.update');
 });
 
 // 管理者ページ

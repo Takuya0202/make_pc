@@ -14,6 +14,8 @@
     {{-- main情報 --}}
     {{-- パーツの詳細情報 --}}
     <div class="my-20 mx-auto w-[80%] flex items-center justify-between">
+
+        {{-- 左側 画像、リンクなど --}}
         <div class="w-[30%]">
             <div class="mb-10">
                 <img src="{{asset(str_starts_with($part->image,'images') ?  $part->image : 'storage/' . $part->image)}}"
@@ -30,26 +32,26 @@
                 </p>
             </div>
         </div>
+
+        {{-- 右側 商品概要 --}}
         <div class="w-[50%] bg-white shadow-2xl p-6 border-2 border-gray-200 rounded-3xl space-y-8">
-            <div class="my-3 text-2xl font-bold text-[#3e3e3e] flex items-center justify-start">
-                <h2>{{$part->name}}</h2>
-            </div>
+            <h2 class="my-3 text-2xl font-bold text-[#3e3e3e] ">{{$part->name}}</h2>
+            <p class="mb-3  text-3xl text-[#3e3e3e]">¥ {{$part->price}}</p>
             <div class="flex justify-between items-center">
                 <p class="">商品スペック</p>
-                <p class="border-l-2 border-zinc-500 pl-5 w-[80%]">{{$part->detail}}</p>
+                <p class="border-l-2 border-[#3e3e3e] pl-5 w-[80%]">{{$part->detail}}</p>
             </div>
             <div class="my-5 grid grid-cols-2 gap-x-5 gap-y-5 text-lg">
-                <p>価格</p>
-                <p>{{$part->price}}</p>
-
                 <p>カテゴリー</p>
                 <p>{{$part->category->name}}</p>
 
                 <p>メーカー</p>
                 <p>{{$part->maker->name}}</p>
             </div>
+
             {{-- 追加時のメッセージコンポーネント --}}
             <x-infomation />
+
             {{-- pclist追加のフォーム --}}
             <div class="my-5">
                 <form action="{{route('app.list.add')}}" method="post" data-submit="false" class="spinForm">
@@ -80,6 +82,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 

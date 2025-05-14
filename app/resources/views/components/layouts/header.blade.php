@@ -32,7 +32,7 @@
             <div class="flex items-center justify-end space-x-3">
                 <img src="{{ asset(str_starts_with($user->icon,'images') ? $user->icon : 'storage/' . $user->icon ) }}"
                     alt="ユーザのアイコン。" class="w-12 h-12 rounded-full object-cover border-2 border-gray-300">
-                <h2 class="text-[#1e1e1f]">{{ $user->name }}さん</h2>
+                <p><a href="{{route('app.user.show')}}" class="text-xl font-semibold text-blue-700">{{$user->name}} さん</a></p>
                 <a href="{{ route('app.lists') }}" class="button">mylistへ</a>
                 <form action="{{ route('auth.logout') }}" method="post">
                     @csrf

@@ -52,13 +52,13 @@
 </head>
 <body class="min-h-screen flex flex-col">
     {{ $header ?? ''}}
-    <main class="flex-grow">
-        {{ $slot }}
+    <main class="flex-grow flex">
+        <div class="flex-1">{{ $slot }}</div>
     </main>
     <footer>
         <div class="flex justify-center items-center h-20 mt-5 border-t-2 border-[#d1d5db] ">
             <div>
-                <h1>MakePC</h1>
+                <p><small>© 2025 MakePC by <a href="https://github.com/Takuya0202" class="text-blue-300">Takuya0202.</a> All rights reserved.</small></p>
             </div>
         </div>
     </footer>

@@ -23,7 +23,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:1|max:10',
-            'email' => 'required|email|string|unique:users',
+            'email' => 'required|email|string|unique:users,email',
             'password' => [
                 'required',
                 'confirmed',
@@ -51,7 +51,7 @@ class RegisterRequest extends FormRequest
 
             'icon.image' => 'アイコンは画像ファイルを選択してください',
             'icon.mimes' => 'アイコンはjpeg,png,gif,jpgのいずれかの形式にしてください',
-            'icon.max' => 'アイコンのサイズは2MB以下にしてください'
+            'icon.max' => 'アイコンのサイズは4MB以下にしてください'
         ];
     }
 }

@@ -1,13 +1,17 @@
 <x-layouts.app title="ユーザー登録">
+
     {{-- プレビューのスクリプト --}}
     <script src="{{ asset('js/preview.js') }}"></script>
+
     {{-- ユーザフォームのコンポーネント --}}
     <x-auth.form
     title="新規登録"
     action="{{route('auth.register')}}"
     button="登録">
+
     {{-- バリデーションエラーのアラートコンポーネント --}}
     <x-alert :$errors/>
+
     {{-- アイコン表示 --}}
         <div class="mb-4 flex justify-center items-center">
             <label for="icon" class="cursor-pointer">
@@ -16,6 +20,8 @@
             </label>
             <input type="file" name="icon" class="file-input hidden" id="icon">
         </div>
+
+        {{-- メアド、名前、パスワード --}}
         <div class="mb-4 flex flex-col sm:flex-row items-center gap-2">
             <label for="name" class="w-36 text-right">名前</label>
             <input type="text" name="name" value="{{ old('name') }}" class="w-full sm:w-[80%] px-4 py-2 rounded-2xl border border-gray-300 bg-zinc-200">
@@ -35,6 +41,7 @@
         <div class="mb-4 flex content-center items-center ">
             <p>既にログイン済みの方は<a href="{{route('auth.login')}}" class="text-blue-600">こちら</a></p>
         </div>
-    </x-auth.form>
-</x-layouts.app>
 
+    </x-auth.form>
+
+</x-layouts.app>

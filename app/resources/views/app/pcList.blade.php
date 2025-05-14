@@ -25,15 +25,18 @@
         </div>
 
         {{-- リスト内のパーツ一覧 --}}
-        <div class="mt-10 mx-auto flex items-center justify-center w-[84%]">
+        <div class="my-10 mx-auto flex items-center justify-center w-[84%]">
             <div class="w-full">
                 @if ($targetPcList)
-                    <div class="flex items-center justify-around w-80 my-5 bg-white p-5 rounded-xl font-semibold ">
-                        <p class="">合計金額</p>
-                        <p class="">￥ {{$totalPrice}}</p>
-                    </div>
-                    <div class="bg-white shadow-2xl py-5 px-2">
-                        <h1 class="text-2xl ml-3 border-b-2 border-[#d1d5db] pb-5">リスト内の商品</h1>
+                    <div class="bg-white shadow-md py-5 px-2">
+
+                        {{-- 合計金額 --}}
+                        <div class="flex items-center justify-between border-b-2 border-[#d1d5db] pb-5">
+                            <h2 class="text-2xl ml-5">リスト内の商品</h2>
+                            <h2 class="text-2xl mr-5">小計 ¥ {{$totalPrice}}</h2>
+                        </div>
+
+                        {{-- リスト中身 --}}
                         @foreach ($targetPcList->parts as $part)
                                 <div class="w-full flex justify-start border-b-2 border-[#d1d5db] bg-white px-3 py-5 ">
                                     {{-- 商品画像--}}
