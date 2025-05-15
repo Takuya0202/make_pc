@@ -16,7 +16,9 @@ class PartController extends Controller
     // パーツ一覧
     public function showPartsView() :View
     {
-        $parts = Part::with(['maker','category'])->get();
+        $parts = Part::with(['maker','category'])
+                ->orderBy('created_at' , 'desc')
+                ->get();
 
         return view('admin/part/index',compact('parts'));
     }
@@ -120,14 +122,17 @@ class PartController extends Controller
 
         // キーワード検索
         if (!empty($key)) {
-            $query->where('name','like','%' . $key . '%')
-                ->orWhereHas('category' , function($query) use($key){
-                    $query->where('name' , $key); //リレージョン先のカテゴリ検索(完全一致)
-                })
-                ->orWhereHas('maker' , function($query) use ($key){
-                    $query->where('name' , $key);
-                });
+            $query->where(function ($query) use ($key) {
+                $query->where('name', 'like', '%' . $key . '%')
+                    ->orWhereHas('category', function ($query) use ($key) {
+                        $query->where('name', $key);
+                    })
+                    ->orWhereHas('maker', function ($query) use ($key) {
+                        $query->where('name', $key);
+                    });
+            });
         }
+
 
         // 並び替え　新着順
         if ($sort == 'created_desc') {

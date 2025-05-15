@@ -32,13 +32,18 @@ class HomeController extends Controller
 
         // キーワード検索
         if (!empty($name)) {
-            $query->where('name','like','%' . $name . '%')
-                ->orWhereHas('category' , function($query) use($name){
-                    $query->where('name' , $name); //リレージョン先のカテゴリ検索(完全一致)
-                })
-                ->orWhereHas('maker' , function($query) use ($name){
-                    $query->where('name' , $name);
+            if (!empty($name)) {
+                $query->where(function ($query) use ($name) {
+                    $query->where('name', 'like', '%' . $name . '%')
+                        ->orWhereHas('category', function ($query) use ($name) {
+                            $query->where('name', $name);
+                        })
+                        ->orWhereHas('maker', function ($query) use ($name) {
+                            $query->where('name', $name);
+                        });
                 });
+            }
+
         }
         // カテゴリ検索 allを除く
         if (!empty($category) && !($category == 'all')){

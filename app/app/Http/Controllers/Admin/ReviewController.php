@@ -16,6 +16,7 @@ class ReviewController extends Controller
     public function showReviewsView():View
     {
         $reviews = Review::with(['part','user'])
+                ->orderBy('created_at' , 'desc')
                 ->get();
 
         return view('admin/reviews/index',compact('reviews'));

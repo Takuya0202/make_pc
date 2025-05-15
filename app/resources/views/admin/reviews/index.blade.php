@@ -11,7 +11,7 @@
                 <select name="sort" class="p-3 bg-white border-2 border-[#3e3e3e] rounded-xl" onchange="this.form.submit()">
                     <option value="created_desc" @selected(request('sort') == 'created_desc')>新しい順</option>
                     <option value="rating_desc" @selected(request('sort') == 'rating_desc')>評価の高い順</option>
-                    <option value="rating_asc" @selected(request('sort') == 'rating_desc')>評価の低い順</option>
+                    <option value="rating_asc" @selected(request('sort') == 'rating_asc')>評価の低い順</option>
                 </select>
             </form>
         </div>

@@ -50,7 +50,7 @@
 <body class="min-h-screen flex flex-col">
     <header>
         <div class="flex items-center justify-between w-full h-16 border-b-2 border-[#d1d5db]">
-            <h2 class="font-bold text-2xl w-96 ml-5 my-5"><a href="{{route('admin.home')}}">dashbord</a></h2>
+            <h2 class="font-bold text-2xl w-96 ml-5 my-5"><a href="{{route('admin.home')}}">Dashboard</a></h2>
             <div class="flex items-center space-x-5 my-5 mr-5">
                 <p class="button"><a href="{{route('app.home')}}">homeへ</a></p>
                 <form action="{{route('auth.logout')}}" method="POST">
