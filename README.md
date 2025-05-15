@@ -50,8 +50,8 @@ php artisan storage:link
 ## アプリ画面 
 ### ユーザー認証画面 
 <p float="left">
-    <img src="readme-images/auth/register.png" width="500"></img>
-    <img src="readme-images/auth/login.png" width="500"></img>
+    <img src="readme-images/auth/register.png" width="450"></img>
+    <img src="readme-images/auth/login.png" width="450"></img>
 </p>
 
 ユーザー認証に成功すると、http://localhost:8880/app/home にリダイレクトされます<br>
