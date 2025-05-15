@@ -50,8 +50,8 @@ php artisan storage:link
 ## アプリ画面 
 ### ユーザー認証画面 
 <p float="left">
-    <img src="readme-images/auth/register.png" width="450"></img>
-    <img src="readme-images/auth/login.png" width="450"></img>
+    <img src="readme-images/auth/register.png" width="45%"></img>
+    <img src="readme-images/auth/login.png" width="45%"></img>
 </p>
 
 ユーザー認証に成功すると、http://localhost:8880/app/home にリダイレクトされます<br>
@@ -61,36 +61,36 @@ php artisan storage:link
 ### パーツページ
 #### 一覧ページ
 <p float="left">
-    <img src="readme-images/app/parts/index.png" width="500"></img>
-    <img src="readme-images/app/parts/search.png" width="500"></img>
+    <img src="readme-images/app/parts/index.png" width="45%"></img>
+    <img src="readme-images/app/parts/search.png" width="45%"></img>
 </p>
 ここではパーツの一覧ビュー、絞り込み機能があり、予めseederで6件のパーツがセットされます<br>
 
 ##### 詳細ページ
 <p float="left">
-    <img src="readme-images/app/parts/show-1.png" width="500"></img>
-    <img src="readme-images/app/parts/show-2.png" width="500"></img>
+    <img src="readme-images/app/parts/show-1.png" width="45%"></img>
+    <img src="readme-images/app/parts/show-2.png" width="45%"></img>
 </p>
 パーツ詳細情報ではユーザーレビューや商品のリンク、リスト追加機能などがあります<br>
 
 ### レビューページ
 <p float="left">
-    <img src="readme-images/app/review/review-1.png" width="500"></img>
-    <img src="readme-images/app/review/review-2.png" width="500"></img>
+    <img src="readme-images/app/review/review-1.png" width="45%"></img>
+    <img src="readme-images/app/review/review-2.png" width="45%"></img>
 </p>
 ユーザーは5段階評価とパーツについてのレビューが記載できます。予めseederで各パーツに3件のレビューがセットされます<br>
 
 ### ユーザープロフィール 
 <p float="left">
-    <img src="readme-images/app/user/user-1.png" width="500"></img>
-    <img src="readme-images/app/user/user-2.png" width="500"></img>
+    <img src="readme-images/app/user/user-1.png" width="45%"></img>
+    <img src="readme-images/app/user/user-2.png" width="45%"></img>
 </p>
 ユーザープロフィールではアイコン、ユーザー名、emailが変更できます。<br>
 
 ### listページ 
 <p float="left">
-    <img src="readme-images/app/list/list-1.png" width="500"></img>
-    <img src="readme-images/app/list/liat-2.png" width="500"></img>
+    <img src="readme-images/app/list/list-1.png" width="45%"></img>
+    <img src="readme-images/app/list/liat-2.png" width="45%"></img>
 </p>
 リストページではユーザーが追加した商品と合計金額を見ることができます。各ユーザーは5つのリストを持っています<br>
 
@@ -100,80 +100,84 @@ php artisan storage:link
 管理者ユーザーは http://localhost:8880/admin にログインすることができます。<br>
 統計や直近に追加されたレビューやパーツが見れます<br>
 
-### パーツ管理 / 
-#### 一覧ページ /
+### パーツ管理 
+
+#### 一覧ページ 
 <p float="left">
-    <img src="readme-images/admin/parts/index.png" width="500"></img>
-    <img src="readme-images/admin/parts/search.png" width="500"></img>
+    <img src="readme-images/admin/parts/index.png" width="45%"></img>
+    <img src="readme-images/admin/parts/search.png" width="45%"></img>
 </p>
 パーツ管理ページでも同様に検索機能、並び替え機能があります<br>
 
 #### 追加ページ 
 <p float="left">
-    <img src="readme-images/admin/parts/create-1.png" width="500"></img>
-    <img src="readme-images/admin/parts/create-2.jpeg" width="500"></img>
+    <img src="readme-images/admin/parts/create-1.png" width="45%"></img>
+    <img src="readme-images/admin/parts/create-2.jpeg" width="45%"></img>
 </p>
+
 パーツ情報を入力後、作成すると以下のように追加できます<br>
 カテゴリーやメーカーは新しく作成もできます。<br>
 作成すると以下のように登録されます<br>
+<br>
+
 <p float="left">
-    <img src="readme-images/admin/parts/store-1.png" width="500"></img>
-    <img src="readme-images/admin/parts/store-2.png" width="500"></img>
+    <img src="readme-images/admin/parts/store-1.png" width="45%"></img>
+    <img src="readme-images/admin/parts/store-2.png" width="45%"></img>
 </p>
 
 #### 詳細ページ
 <p float="left">
-    <img src="readme-images/admin/parts/show-1.png" width="500"></img>
-    <img src="readme-images/admin/parts/show-2.png" width="500"></img>
+    <img src="readme-images/admin/parts/show-1.png" width="45%"></img>
+    <img src="readme-images/admin/parts/show-2.png" width="45%"></img>
 </p>
 
 #### 編集・削除ページ
 <p float="left">
-    <img src="readme-images/admin/parts/update.png" width="500"></img>
-    <img src="readme-images/admin/parts/delete.png" width="500"></img>
+    <img src="readme-images/admin/parts/update.png" width="45%"></img>
+    <img src="readme-images/admin/parts/delete.png" width="45%"></img>
 </p>
 登録したパーツの情報更新、削除ができます<br>
 
 ### レビュー管理
 #### 一覧ページ 
 <p float="left">
-    <img src="readme-images/admin/reviews/index.png" width="500"></img>
-    <img src="readme-images/admin/reviews/search.png" width="500"></img>
+    <img src="readme-images/admin/reviews/index.png" width="45%"></img>
+    <img src="readme-images/admin/reviews/search.png" width="45%"></img>
 </p>
 
 #### 特定のユーザー,パーツのレビュー
 <p float="left">
-    <img src="readme-images/admin/reviews/user.png" width="500"></img>
-    <img src="readme-images/admin/reviews/part.png" width="500"></img>
+    <img src="readme-images/admin/reviews/user.png" width="45%"></img>
+    <img src="readme-images/admin/reviews/part.png" width="45%"></img>
 </p>
 特定のユーザーやパーツについてのレビューも見ることができます。<br>
 
-#### レビューの詳細情報 / 
+#### レビューの詳細情報 
 <p float="left">
-    <img src="readme-images/admin/reviews/detail-1.png" width="500"></img>
-    <img src="readme-images/admin/reviews/detail-2.png" width="500"></img>
+    <img src="readme-images/admin/reviews/detail-1.png" width="45%"></img>
+    <img src="readme-images/admin/reviews/detail-2.png" width="45%"></img>
 </p>
 レビューの本文をクリックすることでレビューの詳細情報を見ることができます<br>
 
 ### ユーザー管理
 <p float="left">
-    <img src="readme-images/admin/users/index.png" width="500"></img>
-    <img src="readme-images/admin/users/search.png" width="500"></img>
+    <img src="readme-images/admin/users/index.png" width="45%"></img>
+    <img src="readme-images/admin/users/search.png" width="45%"></img>
 </p>
 ユーザーの名前や管理者権限を持っているもののみなど検索、絞り込みができます<br>
 
 
 ### カテゴリー管理 
 <p float="left">
-    <img src="readme-images/admin/categories/index.png" width="500"></img>
-    <img src="readme-images/admin/categories/create.png" width="500"></img>
+    <img src="readme-images/admin/categories/index.png" width="45%"></img>
+    <img src="readme-images/admin/categories/create.png" width="45%"></img>
 </p>
 パーツが所属しているカテゴリーの件数、作成、削除ができます。<br>
 
 ### メーカー管理 
 <p float="left">
-    <img src="readme-images/admin/parts/update.png" width="500"></img>
-    <img src="readme-images/admin/parts/delete.png" width="500"></img>
+    <img src="readme-images/admin/parts/update.png" width="45%"></img>
+    <img src="readme-images/admin/parts/delete.png" width="45%"></img>
 </p>
 カテゴリー同様、所属しているパーツの件数、作成、削除が行えます<br>
 
