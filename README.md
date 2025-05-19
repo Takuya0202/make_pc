@@ -29,6 +29,7 @@ git clone https://github.com/Takuya0202/make_pc.git
 cp .env.docker .env
 cd app
 cp .env.example .env
+cd ..
 ```
 上を実行後 `.env` ファイルに管理者情報、データベース情報を記載<br>
 
