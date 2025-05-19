@@ -47,6 +47,7 @@ mkdir -p storage/framework/cache storage/framework/sessions storage/framework/vi
 php artisan storage:link
 ```
 その後、http://localhost:8880 にアクセス<br>
+もしエラーが出たら`docker-compose down`して再度upして実行または`php artisan config:cache`をしてください
 
 ## アプリ画面 
 ### ユーザー認証画面 
