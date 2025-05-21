@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// ログインページ
 Route::prefix('auth')->group(function(){
     Route::get('/register',[RegisterController::class,'showRegisterView'])->name('auth.register');
     Route::post('/register',[RegisterController::class,'register']);
@@ -28,13 +28,17 @@ Route::prefix('auth')->group(function(){
     Route::post('/login',[LoginController::class,'login']);
 });
 
-Route::middleware('auth')->prefix('app')->group(function(){
-    // パーツ一覧ページ。ログインしたらここに来る
+// ゲストでも入れるページ
+Route::prefix('app')->group(function(){
+    // パーツ一覧ページ。
     Route::get('home',[HomeController::class,'showHomeView'])->name('app.home');
     Route::get('home/search',[HomeController::class,'search'])->name('app.home.search');
-    Route::post('/logout',[LogoutController::class,'logout'])->name('auth.logout');
     // パーツ詳細ページ
     Route::get('/detail/{part_id}',[DetailController::class,'showDetailView'])->name('app.detail')->whereNumber('part_id');
+});
+
+Route::middleware('auth')->prefix('app')->group(function(){
+    Route::post('/logout',[LogoutController::class,'logout'])->name('auth.logout');
     //商品レビューページ
     Route::get('/review/{part_id}',[ReviewController::class,'showReviewView'])->name('app.review')->whereNumber('part_id');
     Route::post('/review/{part_id}',[ReviewController::class,'review']);

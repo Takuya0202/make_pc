@@ -19,9 +19,14 @@ class DetailController extends Controller
         $rating = Review::where('part_id',$part_id)->avg('rating') ?? 0;
         // 小数第一位まで
         $rating = round($rating,1);
-        // pclistのid取得
-        $user_id = Auth::user()->id;
-        $pcLists = PcList::where('user_id',$user_id)->get();
+
+        $pcLists = collect();
+
+        // pclistのid取得 ログイン済みのみ
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            $pcLists = PcList::where('user_id',$user_id)->get();
+        }
         return view('app/detail',compact(['part','reviews','rating','pcLists']));
     }
 }

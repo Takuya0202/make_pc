@@ -52,36 +52,38 @@
             {{-- 追加時のメッセージコンポーネント --}}
             <x-infomation />
 
-            {{-- pclist追加のフォーム --}}
-            <div class="my-5">
-                <form action="{{route('app.list.add')}}" method="post" data-submit="false" class="spinForm">
-                    @csrf
-                    <div class="flex items-center justify-start space-x-5 mb-5">
-                        {{-- パーツidは隠して送信 --}}
-                        <input type="text" name="part_id" value="{{$part->id}}" class="hidden">
-                        <div class="w-[40%]">
-                            <label class="mb-3">追加するリスト</label><br>
-                            <select name="pc_list_id" id="list" class="appearance-none p-4 rounded-2xl bg-[#f2f2f2] leading-3">
-                                @foreach ($pcLists as $pcList)
-                                    <option value="{{ $pcList->id }}" class="bg-[#f6f6f6]">{{ $pcList->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="w-[40%]">
-                            <label class="mb-3">数量</label><br>
-                            <div class="spinContainer">
-                                <span class="spinner spinner-down">-</span>
-                                <input type="number" name="quantity" value="1" data-reject-zero="true"
-                                class="number" readonly>
-                                <span class="spinner spinner-up">+</span>
+            {{-- pclist追加のフォーム,ログイン済みの人のみ --}}
+            @if (Auth::check())
+                <div class="my-5">
+                    <form action="{{route('app.list.add')}}" method="post" data-submit="false" class="spinForm">
+                        @csrf
+                        <div class="flex items-center justify-start space-x-5 mb-5">
+                            {{-- パーツidは隠して送信 --}}
+                            <input type="text" name="part_id" value="{{$part->id}}" class="hidden">
+                            <div class="w-[40%]">
+                                <label class="mb-3">追加するリスト</label><br>
+                                <select name="pc_list_id" id="list" class="appearance-none p-4 rounded-2xl bg-[#f2f2f2] leading-3">
+                                    @foreach ($pcLists as $pcList)
+                                        <option value="{{ $pcList->id }}" class="bg-[#f6f6f6]">{{ $pcList->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="w-[40%]">
+                                <label class="mb-3">数量</label><br>
+                                <div class="spinContainer">
+                                    <span class="spinner spinner-down">-</span>
+                                    <input type="number" name="quantity" value="1" data-reject-zero="true"
+                                    class="number" readonly>
+                                    <span class="spinner spinner-up">+</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex justify-end items-center">
-                        <button type="submit" class="button2">リストに追加</button>
-                    </div>
-                </form>
-            </div>
+                        <div class="flex justify-end items-center">
+                            <button type="submit" class="button2">リストに追加</button>
+                        </div>
+                    </form>
+                </div>
+            @endif
 
         </div>
     </div>

@@ -29,16 +29,24 @@
 
         {{-- ナビ --}}
         <nav class="w-1/3 min-w-[240px]">
-            <div class="flex items-center justify-end space-x-3">
-                <img src="{{ asset(str_starts_with($user->icon,'images') ? $user->icon : 'storage/' . $user->icon ) }}"
-                    alt="ユーザのアイコン。" class="w-12 h-12 rounded-full object-cover border-2 border-gray-300">
-                <p><a href="{{route('app.user.show')}}" class="text-xl font-semibold text-blue-700">{{$user->name}} さん</a></p>
-                <a href="{{ route('app.lists') }}" class="button">mylistへ</a>
-                <form action="{{ route('auth.logout') }}" method="post">
-                    @csrf
-                    <button type="submit" class="button">ログアウト</button>
-                </form>
-            </div>
+            {{-- ログイン済みの人 --}}
+            @if ($user)
+                <div class="flex items-center justify-end space-x-3">
+                    <img src="{{ asset(str_starts_with($user->icon,'images') ? $user->icon : 'storage/' . $user->icon ) }}"
+                        alt="ユーザのアイコン。" class="w-12 h-12 rounded-full object-cover border-2 border-gray-300">
+                    <p><a href="{{route('app.user.show')}}" class="text-xl font-semibold text-blue-700">{{$user->name}} さん</a></p>
+                    <p><a href="{{ route('app.lists') }}" class="button">mylistへ</a></p>
+                    <form action="{{ route('auth.logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="button">ログアウト</button>
+                    </form>
+                </div>
+            {{-- 未ログイン --}}
+            @else
+                <div class="flex items-center justify-end ">
+                    <p class="button"><a href="{{route('auth.login')}}">ログイン</a></p>
+                </div>
+            @endif
         </nav>
 
     </div>
