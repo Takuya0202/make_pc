@@ -24,7 +24,7 @@ make_pcは自作pcを作る手助けをするサービスです<br>
 <img src="https://img.shields.io/badge/Tailwindcss-0769ad?logo=tailwindcss&logoColor=white" style="width:100px ; height:30px"></img>
 <img src="https://img.shields.io/badge/Mysql-lightgrey?logo=mysql&logoColor=white" style="width:100px ; height:30px"></img>
 <img src="https://img.shields.io/badge/Docker-blue?logo=Docker&logoColor=white" style="width:100px ; height:30px"></img>
-
+<img src="https://img.shields.io/badge/Javascript-yellow?logo=Javascript&logoColor=white" style="width:100px ; height:30px"></img>
 ## セットアップ方法
 まずは以下を実行<br>
 ```bash
